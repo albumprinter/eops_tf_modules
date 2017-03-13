@@ -5,7 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [0.1.10] - 2017-03-13
 ### Changed
+- Use the public_subnet ids list as Jeroen intended, but this time inside the initial list declaration
 
 ## [0.1.9] - 2017-03-13
 ### Changed
@@ -58,13 +61,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial commit
 
-[Unreleased]: https://github.com/albumprinter/eops_tf_modules/compare/v0.1.8..HEAD
-[0.1.8]: https://github.com/albumprinter/eops_tf_modules/compare/v0.1.7...v0.1.8
-[0.1.7]: https://github.com/albumprinter/eops_tf_modules/compare/v0.1.6...v0.1.7
-[0.1.6]: https://github.com/albumprinter/eops_tf_modules/compare/v0.1.5...v0.1.6
-[0.1.5]: https://github.com/albumprinter/eops_tf_modules/compare/v0.1.4...v0.1.5
-[0.1.4]: https://github.com/albumprinter/eops_tf_modules/compare/v0.1.3...v0.1.4
-[0.1.3]: https://github.com/albumprinter/eops_tf_modules/compare/v0.1.2...v0.1.3
-[0.1.2]: https://github.com/albumprinter/eops_tf_modules/compare/v0.1.1...v0.1.2
-[0.1.1]: https://github.com/albumprinter/eops_tf_modules/compare/v0.1.0...v0.1.1
+[Unreleased]: https://github.com/albumprinter/eops_tf_modules/compare/v0.1.10..HEAD
+[0.1.8]: https://github.com/albumprinter/eops_tf_modules/compare/v0.1.9...v0.1.10
+[0.1.8]: https://github.com/albumprinter/eops_tf_modules/compare/v0.1.0...v0.1.9
 [0.1.0]: https://github.com/albumprinter/eops_tf_modules/compare/v0.0.1...v0.1.0

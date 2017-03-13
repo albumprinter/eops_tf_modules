@@ -9,7 +9,7 @@ as a jenkins infra terraform multi aws account lifecycles project.
 
 ```hcl-terraform
 module "app_name" {
-  source             = "git@github.com:albumprinter/eops_tf_modules.git//apps/sample_loadbalanced_application?ref=v0.1.9"
+  source             = "git@github.com:albumprinter/eops_tf_modules.git//apps/sample_loadbalanced_application?ref=v0.1.10"
   description        = "Terraform Demo"
   environment        = "dev"
   application_name   = "app_name"
