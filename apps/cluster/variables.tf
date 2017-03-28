@@ -55,3 +55,18 @@ variable "iam_policy_document" {
 }
 EOF
 }
+variable "ami" {
+  default = "ami-971238f1"
+}
+
+variable "instance_type" {
+  default = "t2.medium"
+}
+
+variable "availability_zone" {
+  default = "eu-west-1a"
+}
+
+variable "chef_run_list" {
+  type = "list"
+}
