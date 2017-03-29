@@ -3,9 +3,11 @@ resource "aws_instance" "app" {
   instance_type = "${var.instance_type}"
   availability_zone = "${var.availability_zone}"
   associate_public_ip_address = "${var.private == true ? false :true}"
-  iam_instance_profile = ""
-//  subnet_id = ""
-  vpc_security_group_ids = []
+  iam_instance_profile = "${aws_iam_instance_profile.app.arn}"
+  security_groups = ["${aws_security_group.app.id}"]
+  subnet_id = "${element(module.aws_core_data.private_subnets,count.index)}"
+  vpc_security_group_ids = ["${aws_security_group.app.id}"]
+
 
   tags {
     Name            = "${var.app_name}-${count.index + 1}"
@@ -50,4 +52,11 @@ resource "aws_iam_role" "app" {
   path = "/"
 
   assume_role_policy = "${var.iam_policy_document}"
+}
+
+# SG for instance
+resource "aws_security_group" "app" {
+  name        = "SG-${var.app_name}"
+  description = "Allow inbound traffic for ${var.app_name}"
+  vpc_id      = "${module.aws_core_data.vpc_id}"
 }
