@@ -17,26 +17,26 @@ resource "aws_instance" "app" {
     Environment     = "${var.environment}"
   }
 
-  provisioner "chef" {
-    attributes_json = <<-EOF
-      {
-          "key": "value",
-      }
-      EOF
-
-    environment     = "${var.environment}"
-    run_list        = "${var.chef_run_list}"
-    node_name       = "${var.app_name}-${count.index + 1}"
-    secret_key      = "${file("../encrypted_data_bag_secret")}"
-    server_url      = "https://chef.albelli.com/organizations/${var.tags_team}"
-    recreate_client = false
-    user_name       = "${var.tags_team}"
-    user_key        = "${file("../${var.tags_team}.pem")}"
-    version         = "12.4.1"
-    connection {
-      type = "ssh"
-    }
-  }
+//  provisioner "chef" {
+//    attributes_json = <<-EOF
+//      {
+//          "key": "value",
+//      }
+//      EOF
+//
+//    environment     = "${var.environment}"
+//    run_list        = "${var.chef_run_list}"
+//    node_name       = "${var.app_name}-${count.index + 1}"
+//    secret_key      = "${file("../encrypted_data_bag_secret")}"
+//    server_url      = "https://chef.albelli.com/organizations/${var.tags_team}"
+//    recreate_client = false
+//    user_name       = "${var.tags_team}"
+//    user_key        = "${file("../${var.tags_team}.pem")}"
+//    version         = "12.4.1"
+//    connection {
+//      type = "ssh"
+//    }
+//  }
   count = "${var.instance_count}"
 }
 
