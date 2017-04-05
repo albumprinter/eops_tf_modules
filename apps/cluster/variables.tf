@@ -70,3 +70,7 @@ variable "availability_zone" {
 variable "chef_run_list" {
   type = "list"
 }
+
+variable "key_name" {
+  default = "aws-eops-sandbox"
+}

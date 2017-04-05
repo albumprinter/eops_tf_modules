@@ -6,10 +6,10 @@ resource "aws_instance" "app" {
   security_groups = ["${aws_security_group.app.id}"]
   subnet_id = "${element(module.aws_core_data.private_subnets,count.index)}"
   vpc_security_group_ids = ["${aws_security_group.app.id}"]
-
+  key_name = "${var.key_name}"
 
   tags {
-    Name            = "${var.app_name}-${count.index + 1}"
+    Name            = "TEST${upper(var.app_name)}00${count.index + 1}.AWS"
     "Business Unit" = "${var.tags_business_unit}"
     "Cost Center"   = "${var.tags_cost_center}"
     Team            = "${var.tags_team}"
