@@ -17,6 +17,17 @@ resource "aws_instance" "app" {
     Description     = "${var.description}"
     Environment     = "${var.environment}"
   }
+//  provisioner "chef" {
+//    environment             = "${var.environment}"
+//    run_list                = ["role[main_provisioner]"]
+//    node_name               = "main_provisioner"
+//    server_url              = "https://${var.chef_server}/organizations/${var.organization}/"
+//    secret_key              = "${file(var.provisioner_pem_key)}"
+//    user_name               = "${var.chef_client}"
+//    user_key                = "${file(var.chef_pem_key)}"
+//    fetch_chef_certificates = "${var.fetch_chef_certificates}"
+//    recreate_client         = true
+//  }
 
 //  provisioner "chef" {
 //    attributes_json = <<-EOF
