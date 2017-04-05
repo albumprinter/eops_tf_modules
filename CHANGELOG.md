@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.4.4] - 2017-04-04
+### Changed
+- update the apigateway integration type to aws_proxy 
+
+## [0.4.3] - 2017-04-04
+### Changed
+- update the trust relationship from the apigateway to lambda 
+
 ## [0.4.2] - 2017-03-23
 ### Changed
 - remove s3 object version from lambda function
@@ -87,7 +95,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial commit
 
-[Unreleased]: https://github.com/albumprinter/eops_tf_modules/compare/v0.4.2..HEAD
+[Unreleased]: https://github.com/albumprinter/eops_tf_modules/compare/v0.4.4..HEAD
+[0.4.3]: https://github.com/albumprinter/eops_tf_modules/compare/v0.4.3...v0.4.4
+[0.4.3]: https://github.com/albumprinter/eops_tf_modules/compare/v0.4.2...v0.4.3
 [0.4.2]: https://github.com/albumprinter/eops_tf_modules/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/albumprinter/eops_tf_modules/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/albumprinter/eops_tf_modules/compare/v0.3.0...v0.4.0

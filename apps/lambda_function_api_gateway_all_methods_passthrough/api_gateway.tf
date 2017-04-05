@@ -49,9 +49,11 @@ resource "aws_api_gateway_integration" "app_integration" {
   http_method = "${aws_api_gateway_method.app.http_method}"
   rest_api_id = "${aws_api_gateway_rest_api.app.id}"
   resource_id = "${aws_api_gateway_resource.app.id}"
-  type = "AWS"
+  type = "AWS_PROXY"
   integration_http_method = "POST"
-  uri = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/${aws_lambda_function.app.arn}"
+//  integration_http_method = "${aws_api_gateway_method.app.http_method}"
+  uri = "arn:aws:apigateway:${var.region}:lambda:path/2015-03-31/functions/${aws_lambda_function.app.arn}/invocations"
+
   credentials = "${aws_iam_role.iam_for_app.arn}"
 }
 

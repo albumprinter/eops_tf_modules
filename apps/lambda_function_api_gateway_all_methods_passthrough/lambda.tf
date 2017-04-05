@@ -23,12 +23,20 @@ resource "aws_iam_role" "iam_for_app" {
   "Version": "2012-10-17",
   "Statement": [
     {
+      "Sid": "1",
       "Action": "sts:AssumeRole",
       "Principal": {
         "Service": "lambda.amazonaws.com"
       },
-      "Effect": "Allow",
-      "Sid": ""
+      "Effect": "Allow"
+    },
+    {
+      "Sid": "2",
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "apigateway.amazonaws.com"
+      },
+      "Effect": "Allow"
     }
   ]
 }
