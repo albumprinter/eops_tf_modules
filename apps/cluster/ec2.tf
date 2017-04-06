@@ -29,26 +29,26 @@ resource "aws_instance" "app" {
 //    recreate_client         = true
 //  }
 
-//  provisioner "chef" {
+  provisioner "chef" {
 //    attributes_json = <<-EOF
 //      {
 //          "key": "value",
 //      }
 //      EOF
-//
-//    environment     = "${var.environment}"
-//    run_list        = "${var.chef_run_list}"
-//    node_name       = "${var.app_name}-${count.index + 1}"
+
+    environment     = "${var.environment}"
+    run_list        = "${var.chef_run_list}"
+    node_name       = "${var.app_name}-${count.index + 1}"
 //    secret_key      = "${file("../encrypted_data_bag_secret")}"
-//    server_url      = "https://chef.albelli.com/organizations/${var.tags_team}"
-//    recreate_client = false
-//    user_name       = "${var.tags_team}"
-//    user_key        = "${file("../${var.tags_team}.pem")}"
-//    version         = "12.4.1"
-//    connection {
-//      type = "ssh"
-//    }
-//  }
+    server_url      = "https://chef.albelli.com/organizations/${var.tags_team}"
+    recreate_client = false
+    user_name       = "${var.tags_team}"
+    user_key        = "${var.chef_user_key}"
+    version         = "12.4.1"
+    connection {
+      type = "ssh"
+    }
+  }
   count = "${var.instance_count}"
 }
 
@@ -69,6 +69,21 @@ resource "aws_security_group" "app" {
   name        = "SG-${var.app_name}"
   description = "Allow inbound traffic for ${var.app_name}"
   vpc_id      = "${module.aws_core_data.vpc_id}"
+
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["192.168.0.0/16", "77.60.83.148/32"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   tags {
     Name            = "${var.app_name}"
     "Business Unit" = "${var.tags_business_unit}"

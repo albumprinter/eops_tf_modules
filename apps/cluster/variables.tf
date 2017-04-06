@@ -74,3 +74,7 @@ variable "chef_run_list" {
 variable "key_name" {
   default = "aws-eops-sandbox"
 }
+
+variable "chef_user_key" {
+  default = "eops.pem"
+}
