@@ -6,7 +6,7 @@ resource "aws_security_group" "database" {
     from_port = 3306
     to_port = 3306
     protocol = "tcp"
-    cidr_blocks = ["${split(",", var.admin_cidrs)}"]
+    cidr_blocks = ["192.168.0.0/16", "77.60.83.148/32"]
   }
 
   egress {
@@ -39,7 +39,7 @@ resource "aws_db_instance" "database" {
   depends_on = ["aws_db_subnet_group.database", "aws_security_group.database"]
   identifier = "${var.environment}-${var.db_identifer_suffix}"
   allocated_storage = "${var.db_storage_size}"
-  engine = "${var.db_engine}"
+  engine = "mysql"
   engine_version = "${var.db_engine_version}"
   instance_class = "${var.db_instance_size}"
   username = "${var.db_admin_username}"
