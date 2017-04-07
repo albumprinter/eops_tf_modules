@@ -15,12 +15,12 @@ variable "tags_purpose" {
   default = ""
 }
 variable "description" {}
-variable "app_name" {}
-
 
 variable "environment" {}
-variable "variables" {
-  default = ""
+
+variable "app_name" {
+  description = "A value to append to the RDS identifer to create a unique name"
+  default = "rds-database"
 }
 
 variable "enabled" {
@@ -71,9 +71,4 @@ variable "db_multi_az" {
 variable "db_backup_retention_period" {
   description = "The database retention period"
   default = 7
-}
-
-variable "db_identifer_suffix" {
-  description = "A value to append to the RDS identifer to create a unique name"
-  default = "rds-database"
 }
