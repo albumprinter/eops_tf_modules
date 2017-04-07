@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.5.0] - 2017-04-07
+### Changed
+- Added the template for mysql rds setup
+
 ## [0.4.4] - 2017-04-04
 ### Changed
 - update the apigateway integration type to aws_proxy 
@@ -95,7 +99,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial commit
 
-[Unreleased]: https://github.com/albumprinter/eops_tf_modules/compare/v0.4.4..HEAD
+[Unreleased]: https://github.com/albumprinter/eops_tf_modules/compare/v0.5.0..HEAD
+[0.5.0]: https://github.com/albumprinter/eops_tf_modules/compare/v0.4.4...v0.5.0
 [0.4.3]: https://github.com/albumprinter/eops_tf_modules/compare/v0.4.3...v0.4.4
 [0.4.3]: https://github.com/albumprinter/eops_tf_modules/compare/v0.4.2...v0.4.3
 [0.4.2]: https://github.com/albumprinter/eops_tf_modules/compare/v0.4.1...v0.4.2
