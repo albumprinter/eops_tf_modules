@@ -7,7 +7,7 @@ resource "aws_security_group" "redis" {
   ingress {
     from_port = 6379
     to_port = 6379
-    protocol = "-1"
+    protocol = "tcp"
     cidr_blocks = ["192.168.0.0/16"]
   }
 
