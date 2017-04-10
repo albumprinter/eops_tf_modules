@@ -32,7 +32,7 @@ variable "cache_identifier" {}
 
 variable "parameter_group" {
   description= "For cluster mode override with: default.redis3.2.cluster.on"
-  default = "redis3.2"
+  default = "default.redis3.2"
 }
 
 variable "maintenance_window" {}
