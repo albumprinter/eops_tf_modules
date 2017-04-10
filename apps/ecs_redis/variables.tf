@@ -35,8 +35,6 @@ variable "parameter_group" {
   default = "redis3.2"
 }
 
-variable "subnet_group" {}
-
 variable "maintenance_window" {}
 
 variable "number_cache_clusters" {
