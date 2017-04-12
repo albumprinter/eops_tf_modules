@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Changed
-- Added the rds_mysql module
+- Added the elasticache module
 - Added additional outputs for the api gateway passthru proxy and rds_mysql modules
 
 ## [0.5.0] - 2017-04-07
