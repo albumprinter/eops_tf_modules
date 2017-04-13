@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+
 ## [0.5.1] - 2017-04-13
 ### Added
 - Add variable map for the all passthrough gateway lambda function
