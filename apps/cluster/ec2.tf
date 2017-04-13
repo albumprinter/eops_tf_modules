@@ -3,7 +3,6 @@ resource "aws_instance" "app" {
   instance_type = "${var.instance_type}"
   associate_public_ip_address = "${var.private == true ? false :true}"
   iam_instance_profile = "${aws_iam_instance_profile.app.name}"
-  security_groups = ["${aws_security_group.app.id}"]
   subnet_id = "${element(module.aws_core_data.private_subnets,count.index)}"
   vpc_security_group_ids = ["${aws_security_group.app.id}"]
   key_name = "${var.key_name}"
