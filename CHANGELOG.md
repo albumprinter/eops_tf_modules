@@ -13,7 +13,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.5.0] - 2017-04-07
 ### Added
-
 - Add the template for mysql rds setup
 
 ## [0.4.4] - 2017-04-04
