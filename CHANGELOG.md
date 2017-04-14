@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Add variable map for the all passthrough gateway lambda function
 - Add password output to the RDS TF setup
 
+
+## [0.5.1] - 2017-04-13
+### Added
+- Add variable map for the all passthrough gateway lambda function
+- Add password output to the RDS TF setup
+
 ## [0.5.0] - 2017-04-07
 ### Added
 - Add the template for mysql rds setup
