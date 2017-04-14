@@ -23,7 +23,8 @@ variable "runtime" {
 variable "handler" {}
 variable "environment" {}
 variable "variables" {
-  default = ""
+  type = "map"
+  default = {}
 }
 
 variable "memory_size" {

@@ -13,6 +13,9 @@ resource "aws_lambda_function" "app" {
     subnet_ids = ["${split( ",", var.private == true ?   join(",", module.aws_core_data.private_subnets) :  join(",", concat(module.aws_core_data.private_subnets,module.aws_core_data.public_subnets)))}"]
     security_group_ids = ["${aws_security_group.sg_for_app.id}"]
   }
+  environment {
+    variables = "${var.variables}"
+  }
   count            = "${var.enabled}"
 }
 

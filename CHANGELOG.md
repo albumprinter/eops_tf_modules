@@ -9,9 +9,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added the elasticache module
 - Added additional outputs for the api gateway passthru proxy and rds_mysql modules
 
+
+## [0.5.1] - 2017-04-13
+### Added
+- Add variable map for the all passthrough gateway lambda function
+- Add password output to the RDS TF setup
+
 ## [0.5.0] - 2017-04-07
-### Changed
-- Added the template for mysql rds setup
+### Added
+- Add the template for mysql rds setup
 
 ## [0.4.4] - 2017-04-04
 ### Changed
@@ -102,7 +108,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial commit
 
-[Unreleased]: https://github.com/albumprinter/eops_tf_modules/compare/v0.5.0..HEAD
+[Unreleased]: https://github.com/albumprinter/eops_tf_modules/compare/v0.5.1..HEAD
+[0.5.1]: https://github.com/albumprinter/eops_tf_modules/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/albumprinter/eops_tf_modules/compare/v0.4.4...v0.5.0
 [0.4.3]: https://github.com/albumprinter/eops_tf_modules/compare/v0.4.3...v0.4.4
 [0.4.3]: https://github.com/albumprinter/eops_tf_modules/compare/v0.4.2...v0.4.3
