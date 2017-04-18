@@ -75,5 +75,5 @@ variable "db_backup_retention_period" {
 
 variable "db_prevent_destroy" {
   destription = "Protect against accidental terraform destruction of the db resource"
-  default = true
+  default = 1
 }
