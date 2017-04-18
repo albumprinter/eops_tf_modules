@@ -36,6 +36,7 @@ resource "aws_db_subnet_group" "database" {
 }
 
 resource "aws_db_instance" "database" {
+  name = "${var.app_name}"
 //  depends_on = ["aws_db_subnet_group.database", "aws_security_group.database"]
   identifier = "${var.environment}-${var.app_name}"
   allocated_storage = "${var.db_storage_size}"
@@ -54,7 +55,7 @@ resource "aws_db_instance" "database" {
   vpc_security_group_ids = ["${aws_security_group.database.id}"]
   publicly_accessible = false
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = "${var.db_prevent_destroy}"
   }
 
   tags {

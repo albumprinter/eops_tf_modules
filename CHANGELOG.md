@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- Added variable for overriding the destruction of the rds resource flag protection
+- Added the name for the rds_mysql rds resource
+
 ## [0.6.2] - 2017-04-14
 ### Changed
 - Revert change to hardcoded bucket name completely
@@ -23,7 +27,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Add variable map for the all passthrough gateway lambda function
 - Add password output to the RDS TF setup
-
 
 ## [0.5.1] - 2017-04-13
 ### Added
