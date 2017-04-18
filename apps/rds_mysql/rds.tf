@@ -55,7 +55,7 @@ resource "aws_db_instance" "database" {
   vpc_security_group_ids = ["${aws_security_group.database.id}"]
   publicly_accessible = false
   lifecycle {
-    prevent_destroy = "${var.db_prevent_destroy}"
+    prevent_destroy = "${var.db_prevent_destroy > 0 ? true : false}"
   }
 
   tags {
