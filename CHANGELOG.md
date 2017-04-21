@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added variable for overriding the destruction of the rds resource flag protection
 - Added the name for the rds_mysql rds resource
 
+### Changed
+- Change the conditional from boolean to integer for deciding whether the lambda function is public or private
+
 ## [0.6.2] - 2017-04-14
 ### Changed
 - Revert change to hardcoded bucket name completely
