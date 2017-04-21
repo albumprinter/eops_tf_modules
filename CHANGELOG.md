@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - Change the conditional from boolean to integer for deciding whether the lambda function is public or private
+- Cleanup base permissions for the lambda role
 
 ## [0.6.2] - 2017-04-14
 ### Changed

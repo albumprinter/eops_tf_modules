@@ -55,6 +55,9 @@ variable "iam_policy_document" {
                 "ec2:CreateNetworkInterface",
                 "ec2:DescribeNetworkInterfaces",
                 "ec2:DeleteNetworkInterface",
+                "ec2:DescribeVpcs",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeSecurityGroups",
                 "cloudwatch:*",
                 "cognito-identity:ListIdentityPools",
                 "cognito-sync:GetCognitoEvents",
@@ -65,11 +68,7 @@ variable "iam_policy_document" {
                 "iam:ListRolePolicies",
                 "iam:ListRoles",
                 "iam:PassRole",
-                "kinesis:DescribeStream",
-                "kinesis:ListStreams",
-                "kinesis:PutRecord",
                 "lambda:*",
-                "logs:*",
                 "s3:*",
                 "sns:ListSubscriptions",
                 "sns:ListSubscriptionsByTopic",
@@ -80,9 +79,6 @@ variable "iam_policy_document" {
                 "sqs:ListQueues",
                 "sqs:SendMessage",
                 "kms:ListAliases",
-                "ec2:DescribeVpcs",
-                "ec2:DescribeSubnets",
-                "ec2:DescribeSecurityGroups",
                 "iot:GetTopicRule",
                 "iot:ListTopicRules",
                 "iot:CreateTopicRule",
@@ -94,10 +90,7 @@ variable "iam_policy_document" {
                 "iot:CreateThing",
                 "iot:ListPolicies",
                 "iot:ListThings",
-                "iot:DescribeEndpoint",
-                "ec2:CreateNetworkInterface",
-                "ec2:DescribeNetworkInterfaces",
-                "ec2:DeleteNetworkInterface"
+                "iot:DescribeEndpoint"
             ],
             "Resource": "*"
         }
