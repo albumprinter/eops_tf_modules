@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Changed
+- Renamed improperly named file in the elasticache_redis module
+- Updated main.tf in all modules to follow the same structure
+- Added iam role arn output for all the lambda modules
+#### Added
+- added plain lambda function module
 
 ## [0.6.3] - 2017-04-21
 ### Added
