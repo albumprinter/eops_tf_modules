@@ -18,7 +18,7 @@ variable "description" {}
 variable "app_name" {}
 
 variable "runtime" {
-  default = "nodejs4.3}"
+  default = "nodejs4.3"
 }
 variable "handler" {
   default = "exports.handler"
