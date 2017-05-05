@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.6.5] - 2017-05-05
+### Changed
+- remove duplicate entries in the default policy for all methods passthru
+
 ## [0.6.4] - 2017-05-03
 ### Changed
 - Renamed improperly named file in the elasticache_redis module
@@ -139,8 +143,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial commit
 
-[Unreleased]: https://github.com/albumprinter/eops_tf_modules/compare/v0.6.4..HEAD
-[0.6.3]: https://github.com/albumprinter/eops_tf_modules/compare/v0.6.3...v0.6.4
+[Unreleased]: https://github.com/albumprinter/eops_tf_modules/compare/v0.6.5..HEAD
+[0.6.5]: https://github.com/albumprinter/eops_tf_modules/compare/v0.6.4...v0.6.5
+[0.6.4]: https://github.com/albumprinter/eops_tf_modules/compare/v0.6.3...v0.6.4
 [0.6.3]: https://github.com/albumprinter/eops_tf_modules/compare/v0.6.2...v0.6.3
 [0.6.2]: https://github.com/albumprinter/eops_tf_modules/compare/v0.6.1...v0.6.2
 [0.6.1]: https://github.com/albumprinter/eops_tf_modules/compare/v0.6.0...v0.6.1
