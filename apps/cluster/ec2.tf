@@ -51,7 +51,7 @@ resource "aws_instance" "app" {
       type = "ssh"
       user="ubuntu"
       private_key = "${file("D:/test bench/stack/christest.pem")}"
-      host = "${aws_instance.app.${count.index}.private_ip}"
+//      host = "${aws_instance.app.${count.index}.private_ip}"
     }
   }
   count = "${var.instance_count}"
