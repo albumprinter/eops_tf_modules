@@ -1,11 +1,13 @@
 resource "aws_instance" "app" {
   ami = "${var.ami}"
   instance_type = "${var.instance_type}"
-  associate_public_ip_address = "${var.private == true ? false :true}"
+//  associate_public_ip_address = "${var.private == true ? false :true}"
+  associate_public_ip_address = "false"
   iam_instance_profile = "${aws_iam_instance_profile.app.name}"
   subnet_id = "${element(module.aws_core_data.private_subnets,count.index)}"
   vpc_security_group_ids = ["${aws_security_group.app.id}"]
-  key_name = "${var.key_name}"
+//  key_name = "${var.key_name}"
+  key_name = "christest"
 
   tags {
     Name            = "TEST${upper(var.app_name)}00${count.index + 1}.AWS"
@@ -42,10 +44,14 @@ resource "aws_instance" "app" {
     server_url      = "https://chef.albelli.com/organizations/${var.tags_team}"
     recreate_client = false
     user_name       = "${var.tags_team}"
-    user_key        = "${var.chef_user_key}"
+    user_key        = "${file("D:/test bench/stack/eops.pem")}"
     version         = "12.4.1"
+    fetch_chef_certificates = true
     connection {
       type = "ssh"
+      user="ubuntu"
+      private_key = "${file("D:/test bench/stack/christest.pem")}"
+      host = "${aws_instance.app.${count.index}.private_ip}"
     }
   }
   count = "${var.instance_count}"
@@ -54,6 +60,10 @@ resource "aws_instance" "app" {
 resource "aws_iam_instance_profile" "app" {
   name  = "${var.app_name}"
   roles = ["${aws_iam_role.app.name}"]
+
+  provisioner "local-exec" {
+    command = "sleep 10"
+  }
 }
 
 resource "aws_iam_role" "app" {
@@ -73,7 +83,7 @@ resource "aws_security_group" "app" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["192.168.0.0/16", "77.60.83.148/32"]
+    cidr_blocks = ["192.168.0.0/16", "77.60.83.148/32", "10.0.0.0/8"]
   }
 
   egress {
