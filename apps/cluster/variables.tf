@@ -19,6 +19,9 @@ variable "description" {}
 variable "app_name" {
   default = ""
 }
+variable "app_elb_name" {
+  default = ""
+}
 variable "environment" {}
 
 variable "variables" {
@@ -75,9 +78,78 @@ variable "chef_run_list" {
 }
 
 variable "key_name" {
-  default = "aws-eops-sandbox"
+  default = ""
 }
 
 variable "chef_user_key" {
   default = "eops.pem"
+}
+
+variable "user_keypath" {
+  default = ""
+}
+
+variable "private_keypath" {
+  default = ""
+}
+
+variable "chef_serverurl" {
+  default = ""
+}
+
+variable "SG_cidr_blocks" {
+  type = "list"
+  default =  [""]
+  }
+variable "SG_elb_cidr_blocks" {
+  type = "list"
+  default =  [""]
+}
+
+variable "lb_port_outside" {
+  default = "80"
+}
+
+variable "lb_protocol_outside" {
+  default = "HTTP"
+}
+
+variable "instance_port_inside" {
+  default = "80"
+}
+
+variable "instance_protocol_inside" {
+  default = "HTTP"
+}
+
+variable "chef_client_version" {
+  default = "12.10.24"
+}
+
+variable "ec2_sg_ingress_fromport" {
+  default = "0"
+}
+
+variable "ec2_sg_ingress_toport" {
+  default = "0"
+}
+
+variable "ec2_sg_ingress_protocol" {
+  default = "-1"
+}
+
+variable "elb_sg_ingress_fromport" {
+  default = "0"
+}
+
+variable "elb_sg_ingress_toport" {
+  default = "0"
+}
+
+variable "elb_sg_ingress_protocol" {
+  default = "-1"
+}
+
+variable "elb_healthcheck_target"  {
+  default = "TCP:22"
 }

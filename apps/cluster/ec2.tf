@@ -2,15 +2,14 @@ resource "aws_instance" "app" {
   ami = "${var.ami}"
   instance_type = "${var.instance_type}"
 //  associate_public_ip_address = "${var.private == true ? false :true}"
-  associate_public_ip_address = "false"
   iam_instance_profile = "${aws_iam_instance_profile.app.name}"
   subnet_id = "${element(module.aws_core_data.private_subnets,count.index)}"
   vpc_security_group_ids = ["${aws_security_group.app.id}"]
-//  key_name = "${var.key_name}"
-  key_name = "christest"
+  key_name = "${var.key_name}"
+
 
   tags {
-    Name            = "TEST${upper(var.app_name)}00${count.index + 1}.AWS"
+    Name            = "${upper(var.environment)}-${upper(var.app_name)}00${count.index + 1}-AWS"
     "Business Unit" = "${var.tags_business_unit}"
     "Cost Center"   = "${var.tags_cost_center}"
     Team            = "${var.tags_team}"
@@ -18,17 +17,7 @@ resource "aws_instance" "app" {
     Description     = "${var.description}"
     Environment     = "${var.environment}"
   }
-//  provisioner "chef" {
-//    environment             = "${var.environment}"
-//    run_list                = ["role[main_provisioner]"]
-//    node_name               = "main_provisioner"
-//    server_url              = "https://${var.chef_server}/organizations/${var.organization}/"
-//    secret_key              = "${file(var.provisioner_pem_key)}"
-//    user_name               = "${var.chef_client}"
-//    user_key                = "${file(var.chef_pem_key)}"
-//    fetch_chef_certificates = "${var.fetch_chef_certificates}"
-//    recreate_client         = true
-//  }
+
 
   provisioner "chef" {
 //    attributes_json = <<-EOF
@@ -41,17 +30,18 @@ resource "aws_instance" "app" {
     run_list        = "${var.chef_run_list}"
     node_name       = "${var.app_name}-${count.index + 1}"
 //    secret_key      = "${file("../encrypted_data_bag_secret")}"
-    server_url      = "https://chef.albelli.com/organizations/${var.tags_team}"
-    recreate_client = false
+    server_url      = "${var.chef_serverurl}${var.tags_team}"
+    recreate_client = true
     user_name       = "${var.tags_team}"
-    user_key        = "${file("D:/test bench/stack/eops.pem")}"
-    version         = "12.4.1"
+    user_key        = "${file("${var.user_keypath}")}"
+    version         = "${var.chef_client_version}"
+
     fetch_chef_certificates = true
     connection {
       type = "ssh"
       user="ubuntu"
-      private_key = "${file("D:/test bench/stack/christest.pem")}"
-//      host = "${aws_instance.app.${count.index}.private_ip}"
+      private_key = "${file("${var.private_keypath}")}"
+      host = "${self.private_ip}"
     }
   }
   count = "${var.instance_count}"
@@ -80,10 +70,10 @@ resource "aws_security_group" "app" {
   vpc_id      = "${module.aws_core_data.vpc_id}"
 
   ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["192.168.0.0/16", "77.60.83.148/32", "10.0.0.0/8"]
+    from_port   = "${var.ec2_sg_ingress_fromport}"
+    to_port     = "${var.ec2_sg_ingress_toport}"
+    protocol    = "${var.ec2_sg_ingress_protocol}"
+    cidr_blocks = "${var.SG_cidr_blocks}"
   }
 
   egress {
