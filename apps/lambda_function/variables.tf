@@ -1,6 +1,9 @@
 variable "region" {
   default = "eu-west-1"
 }
+variable "account_type" {
+  default = "sandbox"
+}
 variable "tags_business_unit" {
   default = "Albumprinter"
 }
@@ -13,20 +16,25 @@ variable "tags_purpose" {
 }
 variable "description" {}
 variable "app_name" {}
-variable "filename" {}
 
 variable "runtime" {
   default = "nodejs4.3"
 }
-variable "handler" {}
+variable "handler" {
+  default = "exports.handler"
+}
 variable "environment" {}
 variable "variables" {
-  default = ""
+  type = "map"
+  default = {
+    ENCODING="utf-8"
+//    SUMO_ENDPOINT=""
+//    SOURCE_CATEGORY_OVERRIDE=""
+//    SOURCE_HOST_OVERRIDE=""
+//    SOURCE_NAME_OVERRIDE=""
+  }
 }
 
-variable "schedule_expression" {
-  default = "rate(5 minutes)"
-}
 variable "memory_size" {
   default = "128"
 }
@@ -36,10 +44,6 @@ variable "timeout" {
 variable "enabled" {
   default = 1
 }
-variable "private" {
-  default = false
-}
-
 
 variable "iam_policy_document" {
   default =<<EOF
@@ -55,9 +59,6 @@ variable "iam_policy_document" {
                 "ec2:CreateNetworkInterface",
                 "ec2:DescribeNetworkInterfaces",
                 "ec2:DeleteNetworkInterface",
-                "ec2:DescribeVpcs",
-                "ec2:DescribeSubnets",
-                "ec2:DescribeSecurityGroups",
                 "cloudwatch:*",
                 "cognito-identity:ListIdentityPools",
                 "cognito-sync:GetCognitoEvents",
@@ -68,7 +69,11 @@ variable "iam_policy_document" {
                 "iam:ListRolePolicies",
                 "iam:ListRoles",
                 "iam:PassRole",
+                "kinesis:DescribeStream",
+                "kinesis:ListStreams",
+                "kinesis:PutRecord",
                 "lambda:*",
+                "logs:*",
                 "s3:*",
                 "sns:ListSubscriptions",
                 "sns:ListSubscriptionsByTopic",
@@ -79,6 +84,9 @@ variable "iam_policy_document" {
                 "sqs:ListQueues",
                 "sqs:SendMessage",
                 "kms:ListAliases",
+                "ec2:DescribeVpcs",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeSecurityGroups",
                 "iot:GetTopicRule",
                 "iot:ListTopicRules",
                 "iot:CreateTopicRule",
@@ -90,7 +98,10 @@ variable "iam_policy_document" {
                 "iot:CreateThing",
                 "iot:ListPolicies",
                 "iot:ListThings",
-                "iot:DescribeEndpoint"
+                "iot:DescribeEndpoint",
+                "ec2:CreateNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface"
             ],
             "Resource": "*"
         }

@@ -23,7 +23,8 @@ variable "runtime" {
 variable "handler" {}
 variable "environment" {}
 variable "variables" {
-  default = ""
+  type = "map"
+  default = {}
 }
 
 variable "memory_size" {
@@ -99,10 +100,7 @@ variable "iam_policy_document" {
                 "iot:CreateThing",
                 "iot:ListPolicies",
                 "iot:ListThings",
-                "iot:DescribeEndpoint",
-                "ec2:CreateNetworkInterface",
-                "ec2:DescribeNetworkInterfaces",
-                "ec2:DeleteNetworkInterface"
+                "iot:DescribeEndpoint"
             ],
             "Resource": "*"
         }
