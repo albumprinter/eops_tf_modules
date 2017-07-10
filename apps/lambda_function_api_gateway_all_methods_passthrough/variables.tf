@@ -27,6 +27,10 @@ variable "variables" {
   default = {}
 }
 
+variable "lambda_bucket_name" {
+  default = ""
+}
+
 variable "memory_size" {
   default = "128"
 }

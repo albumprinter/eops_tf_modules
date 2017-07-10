@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.6.6] - 2017-06-21
+### Changed
+- Generalize bucket name parameter in API Gateway
+- Add environment variables for Lambda event pattern
+
 ## [0.6.5] - 2017-05-05
 ### Changed
 - remove duplicate entries in the default policy for all methods passthru
@@ -143,7 +148,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial commit
 
-[Unreleased]: https://github.com/albumprinter/eops_tf_modules/compare/v0.6.5..HEAD
+[Unreleased]: https://github.com/albumprinter/eops_tf_modules/compare/v0.6.6..HEAD
+[0.6.6]: https://github.com/albumprinter/eops_tf_modules/compare/v0.6.5...v0.6.6
 [0.6.5]: https://github.com/albumprinter/eops_tf_modules/compare/v0.6.4...v0.6.5
 [0.6.4]: https://github.com/albumprinter/eops_tf_modules/compare/v0.6.3...v0.6.4
 [0.6.3]: https://github.com/albumprinter/eops_tf_modules/compare/v0.6.2...v0.6.3
