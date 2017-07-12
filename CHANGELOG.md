@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+## [0.7.1] - 2017-07-12
+### Changed
+- Added Readme with information and samples
+
 ## [0.7.0] - 2017-07-10
 ### Changed
 - New cluster module with chefprovisioner and loadbalancer 
