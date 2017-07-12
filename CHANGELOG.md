@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [0.7.2] - 2017-07-12
+### Added
+- Added custom json parameter to the cluster ec2 instance chef provisioner
+
 ## [0.7.1] - 2017-07-12
 ### Changed
 - Added Readme with information and samples in the cluster module
@@ -217,7 +222,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial commit
 
-[Unreleased]: https://github.com/albumprinter/eops_tf_modules/compare/v0.7.1..HEAD
+[Unreleased]: https://github.com/albumprinter/eops_tf_modules/compare/v0.7.2..HEAD
+[0.7.2]: https://github.com/albumprinter/eops_tf_modules/compare/v0.7.1...v0.7.2
 [0.7.1]: https://github.com/albumprinter/eops_tf_modules/compare/v0.7.0...v0.7.1
 [0.7.0]: https://github.com/albumprinter/eops_tf_modules/compare/v0.6.6...v0.7.0
 [0.6.6]: https://github.com/albumprinter/eops_tf_modules/compare/v0.6.5...v0.6.6
@@ -229,6 +235,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 [0.6.0]: https://github.com/albumprinter/eops_tf_modules/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/albumprinter/eops_tf_modules/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/albumprinter/eops_tf_modules/compare/v0.3.0...v0.4.0
-[0.3.0]: https://github.com/albumprinter/eops_tf_modules/compare/v0.2.1...v0.3.0
+[0.3.0]: https://github.com/albumprinter/eops_tf_modules/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/albumprinter/eops_tf_modules/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/albumprinter/eops_tf_modules/compare/v0.0.1...v0.1.0
