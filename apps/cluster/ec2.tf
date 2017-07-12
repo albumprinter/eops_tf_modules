@@ -35,6 +35,7 @@ resource "aws_instance" "app" {
     user_name       = "${var.tags_team}"
     user_key        = "${file("${var.user_keypath}")}"
     version         = "${var.chef_client_version}"
+    attributes_json = "${var.chef_attributes_json}"
 
     fetch_chef_certificates = true
     connection {

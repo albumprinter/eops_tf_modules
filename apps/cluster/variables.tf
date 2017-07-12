@@ -153,3 +153,11 @@ variable "elb_sg_ingress_protocol" {
 variable "elb_healthcheck_target"  {
   default = "TCP:22"
 }
+
+variable "chef_attributes_json"  {
+  default = <<-EOF
+  {
+    "key": "value"
+  }
+  EOF
+}

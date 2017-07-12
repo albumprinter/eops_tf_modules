@@ -26,5 +26,6 @@ module "consul-cluster" {
     lb_protocol_outside = "http" //LB listening protocol
     instance_port_inside = "8500" //application port to instances
     instance_protocol_inside = "http" //LB application protocol to instances
+    chef_attributes_json = "{}" //Attribute overrides for the chef recipe
 }
 ```
