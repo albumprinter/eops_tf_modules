@@ -12,7 +12,6 @@ module "consul-cluster" {
     tags_team = "eops" //team name
     environment = "dev-nonprod-prod" 
     app_name = "eops-consul" //name of the application for cluster
-    app_elb_name = "eops-consul_ELB" //name of the loadbalancer
     chef_run_list = "eops-consul::default" //chef runlist name
     description = "consul_cluster" //application description
     instance_count = "0" //how many instances needed in the cluster"
@@ -26,6 +25,5 @@ module "consul-cluster" {
     lb_protocol_outside = "http" //LB listening protocol
     instance_port_inside = "8500" //application port to instances
     instance_protocol_inside = "http" //LB application protocol to instances
-    chef_attributes_json = "{}" //Attribute overrides for the chef recipe
 }
 ```

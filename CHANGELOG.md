@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.7.3] - 2017-07-26
+### Added
+- Removed un-used variable for loadbalancer name
+
 ## [0.7.2] - 2017-07-12
 ### Added
 - Added custom json parameter to the cluster ec2 instance chef provisioner
@@ -222,7 +226,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial commit
 
-[Unreleased]: https://github.com/albumprinter/eops_tf_modules/compare/v0.7.2..HEAD
+[Unreleased]: https://github.com/albumprinter/eops_tf_modules/compare/v0.7.3..HEAD
+[0.7.3]: https://github.com/albumprinter/eops_tf_modules/compare/v0.7.2...v0.7.3
 [0.7.2]: https://github.com/albumprinter/eops_tf_modules/compare/v0.7.1...v0.7.2
 [0.7.1]: https://github.com/albumprinter/eops_tf_modules/compare/v0.7.0...v0.7.1
 [0.7.0]: https://github.com/albumprinter/eops_tf_modules/compare/v0.6.6...v0.7.0
