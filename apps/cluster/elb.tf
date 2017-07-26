@@ -28,7 +28,7 @@ resource "aws_elb" "bar" {
   connection_draining_timeout = 400
 
   tags {
-    Name            = "${var.app_elb_name}"
+    Name            = "ELB-${var.app_name}"
     "Business Unit" = "${var.tags_business_unit}"
     "Cost Center"   = "${var.tags_cost_center}"
     Team            = "${var.tags_team}"

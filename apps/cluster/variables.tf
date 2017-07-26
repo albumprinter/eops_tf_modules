@@ -19,9 +19,7 @@ variable "description" {}
 variable "app_name" {
   default = ""
 }
-variable "app_elb_name" {
-  default = ""
-}
+
 variable "environment" {}
 
 variable "variables" {
