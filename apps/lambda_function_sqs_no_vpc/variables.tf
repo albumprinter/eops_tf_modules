@@ -115,7 +115,7 @@ variable "reserved_concurrent_executions" {
   default = 0
 }
 variable "visibility_timeout_seconds" {
-  default = 30
+  default = 60
 }
 variable "receive_wait_time_seconds" {
   default = "20"
