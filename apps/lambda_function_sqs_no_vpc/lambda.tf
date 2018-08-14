@@ -20,6 +20,12 @@ resource "aws_lambda_function" "app" {
   reserved_concurrent_executions = "${var.reserved_concurrent_executions}"
 }
 
+resource "aws_lambda_event_source_mapping" "event_source_mapping" {
+  batch_size        = 1
+  event_source_arn  = "${aws_sqs_queue.sqs_queue.arn}"
+  function_name     = "${aws_lambda_function.app.arn}"
+}
+
 resource "aws_iam_role" "iam_for_app" {
   name = "${var.app_name}"
   assume_role_policy = <<EOF
