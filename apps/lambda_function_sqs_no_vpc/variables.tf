@@ -114,6 +114,14 @@ variable "retention_days" {
 variable "reserved_concurrent_executions" { 
   default = 0
 }
+variable "visibility_timeout_seconds" {
+  default = 30
+}
+variable "receive_wait_time_seconds" {
+  default = "20"
+}
+variable "message_retention_seconds" {
+  default = "1209600"
+}
 variable "sqs_name" {
-  default = "${var.app_name}"
 }
