@@ -114,3 +114,6 @@ variable "retention_days" {
 variable "reserved_concurrent_executions" { 
   default = 0
 }
+variable "sqs_name" {
+  default = "${var.app_name}"
+}
