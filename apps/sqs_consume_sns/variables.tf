@@ -95,6 +95,7 @@ variable "add_stale_message_cloudwatch" {
 variable "visibility_timeout_seconds" {
   default = 30
 }
+
 variable "sns_subscription_filters" {
   default = "{}"
 }

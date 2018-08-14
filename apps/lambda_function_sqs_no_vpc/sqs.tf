@@ -1,6 +1,6 @@
 
 resource "aws_sqs_queue" "sqs_queue" {
-  name                          = "${var.sqs_name}"
+  name                          = "${var.sqs_sns_name}"
   message_retention_seconds     = "${var.message_retention_seconds}"
   receive_wait_time_seconds     = "${var.receive_wait_time_seconds}"
   visibility_timeout_seconds    = "${var.visibility_timeout_seconds}"
@@ -42,7 +42,7 @@ POLICY
 #ERROR QUEUE
 
 resource "aws_sqs_queue" "lambda_error_queue" {
-  name                        = "${var.sqs_name}-ERROR"
+  name                        = "${var.sqs_sns_name}-ERROR"
   message_retention_seconds   = 1209600
   tags                        = "${local.tags}"
 }
