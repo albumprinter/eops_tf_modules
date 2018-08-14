@@ -87,14 +87,8 @@ variable "iam_policy_document" {
                 "lambda:*",
                 "logs:*",
                 "s3:*",
-                "sns:ListSubscriptions",
-                "sns:ListSubscriptionsByTopic",
-                "sns:ListTopics",
-                "sns:Subscribe",
-                "sns:Unsubscribe",
-                "sns:Publish",
-                "sqs:ListQueues",
-                "sqs:SendMessage",
+                "sns:*",
+                "sqs:*",
                 "kms:ListAliases",
                 "ec2:DescribeVpcs",
                 "ec2:DescribeSubnets",
@@ -107,9 +101,6 @@ variable "iam_policy_document" {
 EOF
 }
 
-variable "lambda_sns_subscription_arn" {
-  default = ""
-}
 variable "lambda_memory_alert_threshold" {
   default = "120"
 }
@@ -122,7 +113,4 @@ variable "retention_days" {
 }
 variable "reserved_concurrent_executions" { 
   default = 0
-}
-variable "sns_subscription_filters" {
-  default = "{}"
 }
