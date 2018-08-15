@@ -1,6 +1,5 @@
 resource "aws_lambda_function" "app" {
   s3_bucket = "${var.lambda_bucket_name}"
-//  s3_object_version = "$LATEST"
   s3_key = "builds/lambda/${var.app_name}/lambda.zip"
   function_name = "${var.app_name}"
   description = "${var.description}"
@@ -13,9 +12,6 @@ resource "aws_lambda_function" "app" {
     variables = "${var.variables}"
   }
   count            = "${var.enabled}"
-  dead_letter_config = {
-    target_arn = "${aws_sns_topic.error_sns.arn}"
-  }
   tags = "${local.tags}"
   reserved_concurrent_executions = "${var.reserved_concurrent_executions}"
 }

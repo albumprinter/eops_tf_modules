@@ -105,6 +105,10 @@ variable "lambda_memory_alert_threshold" {
   default = "120"
 }
 
+variable "redrive_policy_retry_count" {
+  default = "3"
+}
+
 variable "alarm_action_arn" {
   default = ""
 }
@@ -124,4 +128,7 @@ variable "message_retention_seconds" {
   default = "1209600"
 }
 variable "sqs_name" {
+}
+variable "add_stale_message_cloudwatch" {
+  default = 1
 }

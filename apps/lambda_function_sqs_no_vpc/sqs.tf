@@ -4,7 +4,7 @@ resource "aws_sqs_queue" "sqs_queue" {
   message_retention_seconds     = "${var.message_retention_seconds}"
   receive_wait_time_seconds     = "${var.receive_wait_time_seconds}"
   visibility_timeout_seconds    = "${var.visibility_timeout_seconds}"
-  # redrive_policy                = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.sqs_error_queue.arn}\",\"maxReceiveCount\":${var.redrive_policy_retry_count}}"  
+  redrive_policy                = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.sqs_error_queue.arn}\",\"maxReceiveCount\":${var.redrive_policy_retry_count}}"  
   tags = {
     "Business Unit"             = "${var.tags_business_unit}"
     Environment                 = "${var.environment}"
@@ -41,15 +41,15 @@ POLICY
 
 #ERROR QUEUE
 
-resource "aws_sqs_queue" "lambda_error_queue" {
+resource "aws_sqs_queue" "sqs_error_queue" {
   name                        = "${var.sqs_name}-ERROR"
   message_retention_seconds   = 1209600
   tags                        = "${local.tags}"
 }
 
 
-resource "aws_sqs_queue_policy" "lambda_error_queue_policy" {
-  queue_url = "${aws_sqs_queue.lambda_error_queue.id}"
+resource "aws_sqs_queue_policy" "sqs_error_queue_policy" {
+  queue_url = "${aws_sqs_queue.sqs_error_queue.id}"
 
   policy = <<POLICY
 {
@@ -61,10 +61,10 @@ resource "aws_sqs_queue_policy" "lambda_error_queue_policy" {
       "Effect": "Allow",
       "Principal": "*",
       "Action": "sqs:SendMessage",
-      "Resource": "${aws_sqs_queue.lambda_error_queue.arn}",
+      "Resource": "${aws_sqs_queue.sqs_error_queue.arn}",
       "Condition": {
         "ArnEquals": {
-          "aws:SourceArn": "${aws_sns_topic.error_sns.arn}"
+          "aws:SourceArn": "${aws_sqs_queue.sqs_queue.arn}"
         }
       }
     }
