@@ -123,5 +123,5 @@ variable "receive_wait_time_seconds" {
 variable "message_retention_seconds" {
   default = "1209600"
 }
-variable "sqs_sns_name" {
+variable "sqs_name" {
 }

@@ -1,5 +1,5 @@
 resource "aws_sns_topic" "replay_sns" {
-  name = "${var.sqs_sns_name}-REPLAY"
+  name = "${var.sqs_name}-REPLAY"
 }
 
 resource "aws_sns_topic_subscription" "sqs_sns_topic_subscription" {
@@ -9,7 +9,7 @@ resource "aws_sns_topic_subscription" "sqs_sns_topic_subscription" {
 }
 
 resource "aws_sns_topic" "error_sns" {
-  name = "${var.sqs_sns_name}-ERROR"
+  name = "${var.sqs_name}-ERROR"
 }
 
 resource "aws_sns_topic_subscription" "lambda_error_topic_sqs_subscription" {
