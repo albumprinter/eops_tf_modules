@@ -20,6 +20,7 @@ resource "aws_security_group" "security_group" {
   description = "${var.sg_description}"
   vpc_id = "${module.aws_account_core_data.vpc_id}"
   tags {
+    Domain          = "${var.tags_domain}"
     Name            = "${var.tags_name}"
     "Business Unit" = "${var.tags_business_unit}"
     "Cost Center"   = "${var.tags_cost_center}"
@@ -47,6 +48,7 @@ resource "aws_instance" "ec_instance" {
   }
 
   tags {
+    Domain          = "${var.tags_domain}"
     Name            = "${var.application_name}-${count.index}"
     "Business Unit" = "${var.tags_business_unit}"
     "Cost Center"   = "${var.tags_cost_center}"

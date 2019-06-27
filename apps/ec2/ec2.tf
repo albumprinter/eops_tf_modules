@@ -8,6 +8,7 @@ resource "aws_instance" "app" {
   subnet_id           = "${element(module.aws_core_data.private_subnets,count.index)}"
 
   tags {
+    Domain          = "${var.tags_domain}"
     Name            = "${var.app_name}${count.index + 1}"
     "Business Unit" = "${var.tags_business_unit}"
     "Cost Center"   = "${var.tags_cost_center}"
@@ -28,6 +29,7 @@ resource "aws_security_group" "app" {
   description = "Allow inbound traffic for ${var.app_name}"
   vpc_id      = "${module.aws_core_data.vpc_id}"
   tags {
+    Domain          = "${var.tags_domain}"
     Name            = "${var.app_name}"
     "Business Unit" = "${var.tags_business_unit}"
     "Cost Center"   = "${var.tags_cost_center}"

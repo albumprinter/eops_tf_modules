@@ -20,6 +20,8 @@ variable "tags_team" {
   description = "Team for tagging purposes"
 }
 
+variable "tags_domain" {}
+
 variable "tags_purpose" {
   description = "Tagging purposes"
   default     = ""

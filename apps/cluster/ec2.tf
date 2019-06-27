@@ -9,6 +9,7 @@ resource "aws_instance" "app" {
 
 
   tags {
+    Domain          = "${var.tags_domain}"
     Name            = "${upper(var.environment)}-${upper(var.app_name)}00${count.index + 1}-AWS"
     "Business Unit" = "${var.tags_business_unit}"
     "Cost Center"   = "${var.tags_cost_center}"
@@ -85,6 +86,7 @@ resource "aws_security_group" "app" {
   }
 
   tags {
+    Domain          = "${var.tags_domain}"
     Name            = "${var.app_name}"
     "Business Unit" = "${var.tags_business_unit}"
     "Cost Center"   = "${var.tags_cost_center}"

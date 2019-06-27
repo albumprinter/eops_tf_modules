@@ -19,6 +19,7 @@ resource "aws_security_group" "redis" {
   }
 
   tags {
+    Domain          = "${var.tags_domain}"
     Name            = "${var.app_name}"
     "Business Unit" = "${var.tags_business_unit}"
     "Cost Center"   = "${var.tags_cost_center}"
@@ -52,6 +53,7 @@ resource "aws_elasticache_replication_group" "redis" {
   port                          = 6379
 
   tags {
+    Domain          = "${var.tags_domain}"
     Name            = "${var.app_name}"
     "Business Unit" = "${var.tags_business_unit}"
     "Cost Center"   = "${var.tags_cost_center}"

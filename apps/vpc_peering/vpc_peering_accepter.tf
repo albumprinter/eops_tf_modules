@@ -10,6 +10,7 @@ resource "aws_vpc_peering_connection_accepter" "vpc_peering_accepter" {
   auto_accept = true
 
   tags {
+    Domain = "${var.tags_domain}"
     Name = "${var.app_name}"
     "Business Unit" = "${var.tags_business_unit}"
     "Cost Center" = "${var.tags_cost_center}"
@@ -30,6 +31,7 @@ resource "aws_route_table" "target_vpc_peer_route_table" {
   }
 
   tags {
+    Domain = "${var.tags_domain}"
     Name = "${var.app_name}-route"
     "Business Unit" = "${var.tags_business_unit}"
     "Cost Center" = "${var.tags_cost_center}"

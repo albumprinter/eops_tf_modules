@@ -37,6 +37,7 @@ resource "aws_elb" "load_balancer" {
   connection_draining_timeout = 300
 
   tags {
+    Domain          = "${var.tags_domain}"
     Name            = "${var.load_balancer_name}"
     "Business Unit" = "${var.tags_business_unit}"
     "Cost Center"   = "${var.tags_cost_center}"
@@ -123,6 +124,7 @@ resource "aws_instance" "app" {
   count = "${var.servers}"
 
   tags {
+    Domain          = "${var.tags_domain}"
     Name            = "${var.application_name}-${count.index}"
     "Business Unit" = "${var.tags_business_unit}"
     "Cost Center"   = "${var.tags_cost_center}"

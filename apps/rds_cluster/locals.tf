@@ -1,5 +1,6 @@
 locals {
   common_tags = {
+    Domain          = "${var.tags_domain}"
     "Business Unit" = "${var.tags_business_unit}"
     "Cost Center"   = "${var.tags_cost_center}"
     Team            = "${var.tags_team}"

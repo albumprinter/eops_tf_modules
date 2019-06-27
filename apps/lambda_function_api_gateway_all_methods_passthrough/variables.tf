@@ -15,6 +15,7 @@ variable "tags_cost_center" {
   default = "CC443100"
 }
 variable "tags_team" {}
+variable "tags_domain" {}
 variable "tags_purpose" {
   default = ""
 }

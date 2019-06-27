@@ -28,6 +28,7 @@ resource "aws_elb" "bar" {
   connection_draining_timeout = 400
 
   tags {
+    Domain          = "${var.tags_domain}"
     Name            = "ELB-${var.app_name}"
     "Business Unit" = "${var.tags_business_unit}"
     "Cost Center"   = "${var.tags_cost_center}"
@@ -61,6 +62,7 @@ resource "aws_security_group" "app_elb" {
   }
 
   tags {
+    Domain          = "${var.tags_domain}"
     Name            = "${var.app_name}"
     "Business Unit" = "${var.tags_business_unit}"
     "Cost Center"   = "${var.tags_cost_center}"

@@ -47,6 +47,8 @@ variable "tags_team" {
   default = "EOPS"
 }
 
+variable "tags_domain" {}
+
 variable "tags_purpose" {}
 
 variable "environment" {}

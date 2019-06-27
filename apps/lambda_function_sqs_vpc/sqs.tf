@@ -40,6 +40,7 @@ resource "aws_sqs_queue" "sqs_queue" {
   visibility_timeout_seconds    = "${var.visibility_timeout_seconds}"
   redrive_policy                = "{\"deadLetterTargetArn\":\"${aws_sqs_queue.sqs_error_queue.arn}\",\"maxReceiveCount\":${var.redrive_policy_retry_count}}"  
   tags = {
+    Domain                      = "${var.tags_domain}"
     "Business Unit"             = "${var.tags_business_unit}"
     Environment                 = "${var.environment}"
     "Cost Center"               = "${var.tags_cost_center}"
