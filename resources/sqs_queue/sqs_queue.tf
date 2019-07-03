@@ -1,5 +1,5 @@
 resource "aws_sqs_queue" "queue" {
-  count = var.enabled == true ? 1 : 0
+  count = var.provision == true ? 1 : 0
 
   # Optional
   content_based_deduplication       = var.content_based_deduplication

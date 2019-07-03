@@ -43,6 +43,6 @@ variable "visibility_timeout_seconds" {
 }
 
 # Custom
-variable "enabled" {
+variable "provision" {
   default = true
 }

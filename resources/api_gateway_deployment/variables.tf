@@ -1,18 +1,17 @@
 # Required
-variable "arn" {}
-variable "rule" {}
+variable "rest_api_id" {}
 
 # Optional
-variable "target_id" {
+variable "stage_name" {
   default = null
 }
-variable "input" {
+variable "description" {
   default = null
 }
-variable "input_path" {
+variable "stage_description" {
   default = null
 }
-variable "role_arn" {
+variable "variables" {
   default = null
 }
 

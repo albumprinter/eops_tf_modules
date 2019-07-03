@@ -21,6 +21,6 @@ variable "input_transformer_input_paths" {
 }
 
 # Custom
-variable "enabled" {
+variable "provision" {
   default = true
 }

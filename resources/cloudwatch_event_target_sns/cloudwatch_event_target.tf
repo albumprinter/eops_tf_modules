@@ -1,5 +1,5 @@
 resource "aws_cloudwatch_event_target" "target" {
-  count = var.enabled == true ? 1 : 0
+  count = var.provision == true ? 1 : 0
 
   # Required
   arn  = var.arn

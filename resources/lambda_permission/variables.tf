@@ -24,6 +24,6 @@ variable "statement_id_prefix" {
 }
 
 # Custom
-variable "enabled" {
+variable "provision" {
   default = true
 }

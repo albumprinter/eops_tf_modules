@@ -1,5 +1,5 @@
 resource "aws_lambda_permission" "permission" {
-  count = var.enabled == true ? 1 : 0
+  count = var.provision == true ? 1 : 0
 
   # Required
   action = var.action

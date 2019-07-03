@@ -19,6 +19,6 @@ variable "role_arn" {
 }
 
 # Custom
-variable "enabled" {
+variable "provision" {
   default = true
 }

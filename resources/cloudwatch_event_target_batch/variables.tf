@@ -25,6 +25,6 @@ variable "batch_target_job_attempts" {
 }
 
 # Custom
-variable "enabled" {
+variable "provision" {
   default = true
 }

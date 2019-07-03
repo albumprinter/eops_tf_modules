@@ -5,7 +5,7 @@ module "lambda_function" {
   dead_letter_queue_target_arn = var.function_dead_letter_target_type == "SQS" ? module.dead_letter_queue.queue_arn : module.dead_letter_topic.topic_arn
   handler                      = var.function_handler
   name                         = var.function_name
-  role                         = module.lambda_role.iam_role_arn
+  role                         = module.role.iam_role_arn
   runtime                      = var.function_runtime
   tags                         = local.tags
 
@@ -29,7 +29,7 @@ module "lambda_function" {
   vpc_config_security_group_ids  = var.function_vpc_config_security_group_ids
 }
 
-module "lambda_role" {
+module "role" {
   source = "../../resources/iam_role"
 
   assume_role_principal = "lambda.amazonaws.com"
@@ -94,7 +94,7 @@ module "log_group" {
 
 module "dead_letter_queue" {
   source  = "../../resources/sqs_queue"
-  enabled = var.function_dead_letter_target_type == "SQS" ? true : false
+  provision = var.function_dead_letter_target_type == "SQS" ? true : false
 
   # Required
   tags = local.tags
@@ -116,7 +116,7 @@ module "dead_letter_queue" {
 
 module "dead_letter_topic" {
   source  = "../../resources/sns_topic"
-  enabled = var.function_dead_letter_target_type == "SNS" ? true : false
+  provision = var.function_dead_letter_target_type == "SNS" ? true : false
 
   # Required
   tags = local.tags
@@ -138,73 +138,4 @@ module "dead_letter_topic" {
   sqs_success_feedback_role_arn            = var.sns_topic_sqs_success_feedback_role_arn
   sqs_success_feedback_sample_rate         = var.sns_topic_sqs_success_feedback_sample_rate
   sqs_failure_feedback_role_arn            = var.sns_topic_sqs_failure_feedback_role_arn
-}
-
-module "lambda_permission" {
-  source  = "../../resources/lambda_permission"
-  enabled = var.event_rule_event_pattern != null  || var.event_rule_schedule_expression != null ? true : false
-
-  # Required
-  action = var.lambda_permission_action
-  function_name = "${var.function_name}"
-  principal = "events.amazonaws.com"
-
-  # Optional
-  event_source_token = var.lambda_permission_event_source_token
-  qualifier = var.lambda_permission_qualifier
-  source_account = var.lambda_permission_source_account
-  source_arn = var.lambda_permission_source_arn
-  statement_id = var.lambda_permission_statement_id
-  statement_id_prefix = var.lambda_permission_statement_id_prefix
-}
-
-module "event_rule" {
-  source  = "../../resources/cloudwatch_event_rule"
-  enabled = var.event_rule_event_pattern != null  || var.event_rule_schedule_expression != null ? true : false
-
-  # Required
-  tags = local.tags
-
-  # Conditionally Required
-  event_pattern       = var.event_rule_event_pattern
-  schedule_expression = var.event_rule_schedule_expression
-
-  # Optional
-  description = var.event_rule_description
-  name        = var.event_rule_name != null ? var.event_rule_name : "${var.function_name}"
-  name_prefix = var.event_rule_name_prefix
-  role_arn    = var.event_rule_role_arn
-  is_enabled  = var.event_rule_is_enabled
-}
-
-module "event_target" {
-  source  = "../../resources/cloudwatch_event_target"
-  enabled = ((var.event_rule_event_pattern != null  || var.event_rule_schedule_expression != null) && var.event_target_input_transformer_input_template == null) ? true : false
-
-  # Required
-  arn  = module.lambda_function.function_arn
-  rule = module.event_rule.event_rule_name
-
-  # Optional
-  target_id                         = var.event_target_target_id
-  input                             = var.event_target_input
-  input_path                        = var.event_target_input_path
-  role_arn                          = var.event_target_role_arn
-}
-
-module "event_target_input_transformer" {
-  source  = "../../resources/cloudwatch_event_target_input_transformer"
-  enabled = ((var.event_rule_event_pattern != null  || var.event_rule_schedule_expression != null) && var.event_target_input_transformer_input_template != null) ? true : false
-
-  # Required
-  arn  = module.lambda_function.function_arn
-  rule = module.event_rule.event_rule_name
-
-  # Optional
-  target_id                         = var.event_target_target_id
-  input                             = var.event_target_input
-  input_path                        = var.event_target_input_path
-  role_arn                          = var.event_target_role_arn
-  input_transformer_input_paths     = var.event_target_input_transformer_input_paths
-  input_transformer_input_template  = var.event_target_input_transformer_input_template
 }

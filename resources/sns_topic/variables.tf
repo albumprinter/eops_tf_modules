@@ -60,6 +60,6 @@ variable "sqs_failure_feedback_role_arn" {
 }
 
 # Custom
-variable "enabled" {
+variable "provision" {
   default = true
 }

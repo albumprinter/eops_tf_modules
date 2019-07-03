@@ -29,6 +29,6 @@ variable "is_enabled" {
 }
 
 # Custom
-variable "enabled" {
+variable "provision" {
   default = true
 }

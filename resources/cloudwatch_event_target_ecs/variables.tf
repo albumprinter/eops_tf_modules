@@ -39,6 +39,6 @@ variable "ecs_target_task_count" {
 }
 
 # Custom
-variable "enabled" {
+variable "provision" {
   default = true
 }

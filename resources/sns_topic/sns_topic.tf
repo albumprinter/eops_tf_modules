@@ -1,5 +1,5 @@
 resource "aws_sns_topic" "topic" {
-  count = var.enabled == true ? 1 : 0
+  count = var.provision == true ? 1 : 0
 
   # Required
   tags = var.tags
