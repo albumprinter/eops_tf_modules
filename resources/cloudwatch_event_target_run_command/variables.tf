@@ -1,6 +1,8 @@
 # Required
 variable "arn" {}
 variable "rule" {}
+variable "run_command_targets_key" {}
+variable "run_command_targets_values" {}
 
 # Optional
 variable "target_id" {

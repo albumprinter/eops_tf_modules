@@ -83,15 +83,36 @@ variable "function_vpc_config_security_group_ids" {
 }
 
 # Custom
-variable "function_has_event_rule" {
-  default = false
-}
 variable "function_dead_letter_target_type" {
   default = "SQS"
 }
 variable "function_dead_letter_target_name" {
   default = null
 }
+
+## ---------------- Lambda Permission ----------------
+# Optional
+variable "lambda_permission_action" {
+  default = "lambda:InvokeFunction"
+} 
+variable "lambda_permission_event_source_token" {
+  default = null
+} 
+variable "lambda_permission_qualifier" {
+  default = null
+} 
+variable "lambda_permission_source_account" {
+  default = null
+} 
+variable "lambda_permission_source_arn" {
+  default = null
+} 
+variable "lambda_permission_statement_id" {
+  default = null
+} 
+variable "lambda_permission_statement_id_prefix" {
+  default = null
+} 
 
 ## ---------------- Event Rule ----------------
 # Conditionally Required
@@ -130,54 +151,6 @@ variable "event_target_input_path" {
   default = null
 }
 variable "event_target_role_arn" {
-  default = null
-}
-variable "event_target_run_command_targets_key" {
-  default = null
-}
-variable "event_target_run_command_targets_values" {
-  default = null
-}
-variable "event_target_ecs_target_group" {
-  default = null
-}
-variable "event_target_ecs_target_launch_type" {
-  default = null
-}
-variable "event_target_ecs_target_subnets" {
-  default = null
-}
-variable "event_target_ecs_target_security_groups" {
-  default = null
-}
-variable "event_target_ecs_target_assign_public_ip" {
-  default = null
-}
-variable "event_target_ecs_target_platform_version" {
-  default = null
-}
-variable "event_target_ecs_target_task_count" {
-  default = null
-}
-variable "event_target_ecs_target_task_definition_arn" {
-  default = null
-}
-variable "event_target_batch_target_job_definition" {
-  default = null
-}
-variable "event_target_batch_target_job_name" {
-  default = null
-}
-variable "event_target_batch_target_array_size" {
-  default = null
-}
-variable "event_target_batch_target_job_attempts" {
-  default = null
-}
-variable "event_target_kinesis_target_partition_key_path" {
-  default = null
-}
-variable "event_target_sqs_target_message_group_id" {
   default = null
 }
 variable "event_target_input_transformer_input_paths" {

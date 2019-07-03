@@ -1,6 +1,7 @@
 # Required
 variable "arn" {}
 variable "rule" {}
+variable "kinesis_target_partition_key_path" {}
 
 # Optional
 variable "target_id" {

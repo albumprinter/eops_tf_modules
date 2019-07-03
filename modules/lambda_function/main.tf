@@ -69,12 +69,12 @@ module "lambda_role" {
   description           = var.iam_role_description
   force_detach_policies = var.iam_role_force_detach_policies
   max_session_duration  = var.iam_role_max_session_duration
-  name                  = var.iam_role_name
+  name                  = var.iam_role_name != null ? var.iam_role_name : "${var.function_name}"
   name_prefix           = var.iam_role_name_prefix
   path                  = var.iam_role_path
   permissions_boundary  = var.iam_role_permissions_boundary
   policy_description    = var.iam_role_policy_description
-  policy_name           = var.iam_role_policy_name
+  policy_name           = var.iam_role_policy_name != null ? var.iam_role_policy_name : "${var.function_name}"
   policy_name_prefix    = var.iam_role_policy_name_prefix
   policy_path           = var.iam_role_policy_path
 }
@@ -140,9 +140,27 @@ module "dead_letter_topic" {
   sqs_failure_feedback_role_arn            = var.sns_topic_sqs_failure_feedback_role_arn
 }
 
+module "lambda_permission" {
+  source  = "../../resources/lambda_permission"
+  enabled = var.event_rule_event_pattern != null  || var.event_rule_schedule_expression != null ? true : false
+
+  # Required
+  action = var.lambda_permission_action
+  function_name = "${var.function_name}"
+  principal = "events.amazonaws.com"
+
+  # Optional
+  event_source_token = var.lambda_permission_event_source_token
+  qualifier = var.lambda_permission_qualifier
+  source_account = var.lambda_permission_source_account
+  source_arn = var.lambda_permission_source_arn
+  statement_id = var.lambda_permission_statement_id
+  statement_id_prefix = var.lambda_permission_statement_id_prefix
+}
+
 module "event_rule" {
   source  = "../../resources/cloudwatch_event_rule"
-  enabled = var.function_has_event_rule == true ? true : false
+  enabled = var.event_rule_event_pattern != null  || var.event_rule_schedule_expression != null ? true : false
 
   # Required
   tags = local.tags
@@ -153,7 +171,7 @@ module "event_rule" {
 
   # Optional
   description = var.event_rule_description
-  name        = var.event_rule_name
+  name        = var.event_rule_name != null ? var.event_rule_name : "${var.function_name}"
   name_prefix = var.event_rule_name_prefix
   role_arn    = var.event_rule_role_arn
   is_enabled  = var.event_rule_is_enabled
@@ -161,33 +179,32 @@ module "event_rule" {
 
 module "event_target" {
   source  = "../../resources/cloudwatch_event_target"
-  enabled = var.function_has_event_rule == true ? true : false
+  enabled = ((var.event_rule_event_pattern != null  || var.event_rule_schedule_expression != null) && var.event_target_input_transformer_input_template == null) ? true : false
 
   # Required
   arn  = module.lambda_function.function_arn
-  rule = module.event_rule.event_rule_arn
+  rule = module.event_rule.event_rule_name
 
   # Optional
   target_id                         = var.event_target_target_id
   input                             = var.event_target_input
   input_path                        = var.event_target_input_path
   role_arn                          = var.event_target_role_arn
-  run_command_targets_key           = var.event_target_run_command_targets_key
-  run_command_targets_values        = var.event_target_run_command_targets_values
-  ecs_target_group                  = var.event_target_ecs_target_group
-  ecs_target_launch_type            = var.event_target_ecs_target_launch_type
-  ecs_target_subnets                = var.event_target_ecs_target_subnets
-  ecs_target_security_groups        = var.event_target_ecs_target_security_groups
-  ecs_target_assign_public_ip       = var.event_target_ecs_target_assign_public_ip
-  ecs_target_platform_version       = var.event_target_ecs_target_platform_version
-  ecs_target_task_count             = var.event_target_ecs_target_task_count
-  ecs_target_task_definition_arn    = var.event_target_ecs_target_task_definition_arn
-  batch_target_job_definition       = var.event_target_batch_target_job_definition
-  batch_target_job_name             = var.event_target_batch_target_job_name
-  batch_target_array_size           = var.event_target_batch_target_array_size
-  batch_target_job_attempts         = var.event_target_batch_target_job_attempts
-  kinesis_target_partition_key_path = var.event_target_kinesis_target_partition_key_path
-  sqs_target_message_group_id       = var.event_target_sqs_target_message_group_id
+}
+
+module "event_target_input_transformer" {
+  source  = "../../resources/cloudwatch_event_target_input_transformer"
+  enabled = ((var.event_rule_event_pattern != null  || var.event_rule_schedule_expression != null) && var.event_target_input_transformer_input_template != null) ? true : false
+
+  # Required
+  arn  = module.lambda_function.function_arn
+  rule = module.event_rule.event_rule_name
+
+  # Optional
+  target_id                         = var.event_target_target_id
+  input                             = var.event_target_input
+  input_path                        = var.event_target_input_path
+  role_arn                          = var.event_target_role_arn
   input_transformer_input_paths     = var.event_target_input_transformer_input_paths
   input_transformer_input_template  = var.event_target_input_transformer_input_template
 }

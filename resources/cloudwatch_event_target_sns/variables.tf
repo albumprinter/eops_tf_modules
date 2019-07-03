@@ -1,6 +1,7 @@
 # Required
 variable "arn" {}
 variable "rule" {}
+variable "sqs_target_message_group_id" {}
 
 # Optional
 variable "target_id" {

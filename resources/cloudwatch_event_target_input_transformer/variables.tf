@@ -1,6 +1,7 @@
 # Required
 variable "arn" {}
 variable "rule" {}
+variable "input_transformer_input_template" {}
 
 # Optional
 variable "target_id" {
@@ -13,6 +14,9 @@ variable "input_path" {
   default = null
 }
 variable "role_arn" {
+  default = null
+}
+variable "input_transformer_input_paths" {
   default = null
 }
 
