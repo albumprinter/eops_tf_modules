@@ -4,6 +4,7 @@ variable "region" {
 variable "tags_business_unit" {
   default = "Albumprinter"
 }
+variable "account_type" {}
 variable "tags_cost_center" {}
 variable "tags_team" {}
 variable "tags_domain" {}
@@ -44,7 +45,7 @@ variable "private" {
 
 
 variable "iam_policy_document" {
-  default =<<EOF
+  default = <<EOF
 {
     "Version": "2012-10-17",
     "Statement": [

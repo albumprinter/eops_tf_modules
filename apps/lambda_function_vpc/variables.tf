@@ -1,9 +1,7 @@
 variable "region" {
   default = "eu-west-1"
 }
-variable "account_type" {
-  default = "sandbox"
-}
+variable "account_type" {}
 variable "tags_business_unit" {
   default = "Albumprinter"
 }
@@ -29,11 +27,11 @@ variable "environment" {}
 variable "variables" {
   type = "map"
   default = {
-    ENCODING="utf-8"
-//    SUMO_ENDPOINT=""
-//    SOURCE_CATEGORY_OVERRIDE=""
-//    SOURCE_HOST_OVERRIDE=""
-//    SOURCE_NAME_OVERRIDE=""
+    ENCODING = "utf-8"
+    //    SUMO_ENDPOINT=""
+    //    SOURCE_CATEGORY_OVERRIDE=""
+    //    SOURCE_HOST_OVERRIDE=""
+    //    SOURCE_NAME_OVERRIDE=""
   }
 }
 
@@ -52,7 +50,7 @@ variable "private" {
 }
 
 variable "iam_policy_document" {
-  default =<<EOF
+  default = <<EOF
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -118,7 +116,7 @@ EOF
 }
 
 variable "assume_role_policy_document" {
-  default =<<EOF
+  default = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [

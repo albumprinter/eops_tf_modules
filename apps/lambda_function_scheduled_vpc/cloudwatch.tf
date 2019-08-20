@@ -2,7 +2,7 @@ resource "aws_cloudwatch_event_rule" "app" {
   name                = "${var.app_name}"
   schedule_expression = "${var.schedule_expression}"
   count               = "${var.enabled}"
-  tags = "${local.tags}"
+  tags                = "${local.tags}"
 }
 
 resource "aws_cloudwatch_event_target" "lambda_vpc" {
@@ -13,20 +13,20 @@ resource "aws_cloudwatch_event_target" "lambda_vpc" {
 }
 
 module "lambda_app_cloudwatch" {
-  source = "../../apps/cloudwatch_lambda"
-  app_name = "${var.app_name}"
-  log_group_name = "/aws/lambda/${var.app_name}"
-  alarm_threshold = "${var.lambda_memory_alert_threshold}"
-  alarm_action_arn = "${var.alarm_action_arn}"
-  environment = "${var.environment}"
-  tags_team = "${var.tags_team}"
-  tags_domain = "${var.tags_domain}"
-  tags_cost_center = "${var.tags_cost_center}"
-  tags_purpose = "${var.tags_purpose}"
-  description = "${var.description}"  
-  retention_days = "${var.retention_days}"  
+  source                   = "../../apps/cloudwatch_lambda"
+  app_name                 = "${var.app_name}"
+  log_group_name           = "/aws/lambda/${var.app_name}"
+  alarm_threshold          = "${var.lambda_memory_alert_threshold}"
+  alarm_action_arn         = "${var.alarm_action_arn}"
+  environment              = "${var.environment}"
+  tags_team                = "${var.tags_team}"
+  tags_domain              = "${var.tags_domain}"
+  tags_cost_center         = "${var.tags_cost_center}"
+  tags_purpose             = "${var.tags_purpose}"
+  description              = "${var.description}"
+  retention_days           = "${var.retention_days}"
   enable_cloudwatch_alarms = "${var.enable_cloudwatch_alarms}"
   providers = {
-   aws = "aws"
+    aws = "aws"
   }
 }

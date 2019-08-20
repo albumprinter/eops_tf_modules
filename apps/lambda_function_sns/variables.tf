@@ -1,9 +1,7 @@
 variable "region" {
   default = "eu-west-1"
 }
-variable "account_type" {
-  default = "sandbox"
-}
+variable "account_type" {}
 variable "tags_business_unit" {
   default = "Albumprinter"
 }

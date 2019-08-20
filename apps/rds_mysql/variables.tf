@@ -1,9 +1,7 @@
 variable "region" {
   default = "eu-west-1"
 }
-variable "account_type" {
-  default = "sandbox"
-}
+variable "account_type" {}
 variable "tags_business_unit" {
   default = "Albumprinter"
 }
@@ -19,7 +17,11 @@ variable "environment" {}
 
 variable "app_name" {
   description = "A value to append to the RDS identifer to create a unique name"
-  default = "rds-database"
+  default     = "rds-database"
+}
+variable "db_cidr" {
+  description = "cidr range that has access to the database. By default all the shared VPC ranges"
+  default     = "10.96.0.0/12"
 }
 
 variable "enabled" {
@@ -40,7 +42,7 @@ variable "db_instance_size" {
 
 variable "db_admin_username" {
   description = "The database admin username"
-  default = "rds_admin"
+  default     = "rds_admin"
 }
 
 variable "db_admin_password" {
@@ -49,25 +51,25 @@ variable "db_admin_password" {
 
 variable "db_parameter_group" {
   description = "The name of the parameter group for the database"
-  default = "default.mysql5.6"
+  default     = "default.mysql5.6"
 }
 
 variable "db_backup_window" {
   description = "The time period in which to backup the database"
-  default = "06:00-07:00"
+  default     = "06:00-07:00"
 }
 
 variable "db_maintenance_window" {
   description = "The time period in which to run maintenance on the database"
-  default = "sun:07:00-sun:07:30"
+  default     = "sun:07:00-sun:07:30"
 }
 
 variable "db_multi_az" {
   description = "Set whether the database should be multi AZ"
-  default = true
+  default     = true
 }
 
 variable "db_backup_retention_period" {
   description = "The database retention period"
-  default = 7
+  default     = 7
 }

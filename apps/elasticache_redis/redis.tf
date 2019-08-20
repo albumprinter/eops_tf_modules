@@ -2,23 +2,10 @@
 # Security group resources
 #
 resource "aws_security_group" "redis" {
-  vpc_id = "${module.aws_core_data.vpc_id}"
+  vpc_id      = "${module.aws_core_data.vpc_id}"
   description = "Allow all inbound traffic for the scheduled lambda function"
-  ingress {
-    from_port = 6379
-    to_port = 6379
-    protocol = "tcp"
-    cidr_blocks = ["192.168.0.0/16"]
-  }
 
-  egress {
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags {
+  tags = {
     Domain          = "${var.tags_domain}"
     Name            = "${var.app_name}"
     "Business Unit" = "${var.tags_business_unit}"
@@ -30,8 +17,29 @@ resource "aws_security_group" "redis" {
   }
 }
 
+resource "aws_security_group_rule" "redis_ingress" {
+  type              = "ingress"
+  security_group_id = "${aws_security_group.redis.id}"
+  description       = "Allow access to Redis"
+  from_port         = 6379
+  to_port           = 6379
+  protocol          = "tcp"
+  cidr_blocks       = ["${var.redis_cidr}"]
+}
+resource "aws_security_group_rule" "redis_egress" {
+  security_group_id = "${aws_security_group.redis.id}"
+  description       = "Allow all outgoing"
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = ["0.0.0.0/0"]
+}
+
+
+
 resource "aws_elasticache_subnet_group" "redis" {
-  name = "${var.app_name}"
+  name       = "${var.app_name}"
   subnet_ids = ["${split(",", join(",", module.aws_core_data.private_subnets))}"]
 }
 
@@ -52,7 +60,7 @@ resource "aws_elasticache_replication_group" "redis" {
   notification_topic_arn        = "${var.notification_topic_arn}"
   port                          = 6379
 
-  tags {
+  tags = {
     Domain          = "${var.tags_domain}"
     Name            = "${var.app_name}"
     "Business Unit" = "${var.tags_business_unit}"

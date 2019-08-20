@@ -15,7 +15,7 @@ variable "app_name" {}
 variable "environment" {}
 
 variable "iam_policy_document" {
-  default =<<EOF
+  default = <<EOF
 {
     "Version": "2012-10-17",
     "Statement": [

@@ -74,3 +74,5 @@ variable "user_data" {
 }
 
 variable "ssh_sg" {}
+
+variable "account_type" {}

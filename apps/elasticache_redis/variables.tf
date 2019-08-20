@@ -7,6 +7,10 @@ variable "account_type" {
 variable "tags_business_unit" {
   default = "Albumprinter"
 }
+variable "redis_cidr" {
+  description = "cidr range that has access to Redis. By default all the shared VPC ranges"
+  default     = "10.96.0.0/12"
+}
 variable "tags_cost_center" {}
 variable "tags_team" {}
 variable "tags_domain" {}
@@ -30,8 +34,8 @@ variable "costcenter" {
 variable "cache_identifier" {}
 
 variable "parameter_group" {
-  description= "For cluster mode override with: default.redis3.2.cluster.on"
-  default = "default.redis3.2"
+  description = "For cluster mode override with: default.redis3.2.cluster.on"
+  default     = "default.redis3.2"
 }
 
 variable "maintenance_window" {}

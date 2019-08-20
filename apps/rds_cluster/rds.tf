@@ -36,16 +36,16 @@ resource "aws_db_instance" "db_instance" {
   apply_immediately           = "${var.apply_immediately}"
   maintenance_window          = "${var.maintenance_window}"
 
-  monitoring_interval = "${var.monitoring_interval}"
+  monitoring_interval                 = "${var.monitoring_interval}"
   iam_database_authentication_enabled = "${var.iam_database_authentication_enabled}"
 
   tags = "${merge(
-        map(
-          "Name", "${lower(var.name)}-rds-${lower(var.environment)}", 
-          "Description", "${lower(var.name)}-rds-${lower(var.environment)}  aws_db_instance ${var.description}"
-        ),
-        local.common_tags
-    )}"
+    map(
+      "Name", "${lower(var.name)}-rds-${lower(var.environment)}",
+      "Description", "${lower(var.name)}-rds-${lower(var.environment)}  aws_db_instance ${var.description}"
+    ),
+    local.common_tags
+  )}"
 
   lifecycle {
     create_before_destroy = true
@@ -61,7 +61,7 @@ resource "aws_db_instance" "db_instance" {
 resource "aws_rds_cluster_instance" "rds_cluster_instance" {
   count = "${var.create_rds_cluster ? var.number_of_instances_in_the_cluster : 0}"
 
-  identifier         = "${lower(var.name)}-cluster-${lower(var.environment)}-${count.index+1}"
+  identifier         = "${lower(var.name)}-cluster-${lower(var.environment)}-${count.index + 1}"
   cluster_identifier = "${aws_rds_cluster.rds_cluster.id}"
   instance_class     = "${var.instance_class}"
 
@@ -70,12 +70,12 @@ resource "aws_rds_cluster_instance" "rds_cluster_instance" {
   db_parameter_group_name = "${var.instance_parameter_group_name}"
 
   tags = "${merge(
-        map(
-          "Name", "${lower(var.name)}-cluster-${lower(var.environment)}-${count.index+1}",
-          "Description", "${lower(var.name)}-cluster-${lower(var.environment)}-${count.index+1} ${var.description}"
-        ),
-        local.common_tags
-    )}"
+    map(
+      "Name", "${lower(var.name)}-cluster-${lower(var.environment)}-${count.index + 1}",
+      "Description", "${lower(var.name)}-cluster-${lower(var.environment)}-${count.index + 1} ${var.description}"
+    ),
+    local.common_tags
+  )}"
 
   depends_on = ["aws_rds_cluster.rds_cluster", "aws_db_subnet_group.db_subnet_group", "aws_db_parameter_group.db_parameter_group"]
 }
@@ -101,18 +101,18 @@ resource "aws_rds_cluster" "rds_cluster" {
   db_cluster_parameter_group_name = "${var.db_cluster_parameter_group_name}"
   availability_zones              = ["${split(",", (lookup(var.availability_zones, var.region)))}"]
 
-  database_name   = "${var.db_name}"
-  master_username = "${var.db_username}"
-  master_password = "${local.master_password}"
+  database_name                       = "${var.db_name}"
+  master_username                     = "${var.db_username}"
+  master_password                     = "${local.master_password}"
   iam_database_authentication_enabled = "${var.iam_database_authentication_enabled}"
 
   tags = "${merge(
-        map(
-          "Name", "${lower(var.name)}-cluster-${lower(var.environment)}",
-          "Description", "${lower(var.name)}-cluster-${lower(var.environment)} ${var.description}"
-        ),
-        local.common_tags
-    )}"
+    map(
+      "Name", "${lower(var.name)}-cluster-${lower(var.environment)}",
+      "Description", "${lower(var.name)}-cluster-${lower(var.environment)} ${var.description}"
+    ),
+    local.common_tags
+  )}"
 
   lifecycle {
     create_before_destroy = true
@@ -136,9 +136,9 @@ resource "aws_rds_cluster" "serverless_cluster" {
   db_subnet_group_name   = "${var.db_subnet_group_name == "" ? aws_db_subnet_group.db_subnet_group.name : var.db_subnet_group_name}"
   vpc_security_group_ids = ["${aws_security_group.db_security_group.id}"]
 
-  storage_encrypted               = "${var.storage_encrypted}"
-  apply_immediately               = "${var.apply_immediately}"
-  availability_zones              = ["${split(",", (lookup(var.availability_zones, var.region)))}"]
+  storage_encrypted  = "${var.storage_encrypted}"
+  apply_immediately  = "${var.apply_immediately}"
+  availability_zones = ["${split(",", (lookup(var.availability_zones, var.region)))}"]
 
   database_name   = "${var.db_name}"
   master_username = "${var.db_username}"
@@ -153,12 +153,12 @@ resource "aws_rds_cluster" "serverless_cluster" {
   }
 
   tags = "${merge(
-        map(
-          "Name", "${lower(var.name)}-cluster-${lower(var.environment)}",
-          "Description", "${lower(var.name)}-cluster-${lower(var.environment)} ${var.description}"
-        ),
-        local.common_tags
-    )}"
+    map(
+      "Name", "${lower(var.name)}-cluster-${lower(var.environment)}",
+      "Description", "${lower(var.name)}-cluster-${lower(var.environment)} ${var.description}"
+    ),
+    local.common_tags
+  )}"
 
   lifecycle {
     create_before_destroy = true
@@ -180,14 +180,14 @@ resource "aws_security_group" "db_security_group" {
     from_port       = "${lookup(var.default_ports, var.engine)}"
     to_port         = "${lookup(var.default_ports, var.engine)}"
     protocol        = "tcp"
-    security_groups = ["${aws_security_group.allow_db_access.id}", "${var.allowed_db_access_sg_groups}"] 
+    security_groups = ["${aws_security_group.allow_db_access.id}", "${var.allowed_db_access_sg_groups}"]
   }
 
   ingress {
-    from_port       = "${lookup(var.default_ports, var.engine)}"
-    to_port         = "${lookup(var.default_ports, var.engine)}"
-    protocol        = "tcp"
-    cidr_blocks     = ["${var.private_cidr_blocks}"] 
+    from_port   = "${lookup(var.default_ports, var.engine)}"
+    to_port     = "${lookup(var.default_ports, var.engine)}"
+    protocol    = "tcp"
+    cidr_blocks = ["${var.private_cidr_blocks}"]
   }
 
   egress {
@@ -198,12 +198,12 @@ resource "aws_security_group" "db_security_group" {
   }
 
   tags = "${merge(
-        map(
-          "Name", "${lower(var.name)}-db-security-group-for-${lower(var.environment)}",
-          "Description", "${lower(var.name)}-db-security-group-for-${lower(var.environment)} ${var.description}"
-        ),
-        local.common_tags
-    )}"
+    map(
+      "Name", "${lower(var.name)}-db-security-group-for-${lower(var.environment)}",
+      "Description", "${lower(var.name)}-db-security-group-for-${lower(var.environment)} ${var.description}"
+    ),
+    local.common_tags
+  )}"
   depends_on = ["aws_security_group.allow_db_access"]
 }
 
@@ -227,15 +227,15 @@ resource "aws_security_group" "allow_db_access" {
 resource "aws_db_subnet_group" "db_subnet_group" {
   name        = "${lower(var.name)}-db-subnet-group-for-${var.create_rds_cluster ? "cluster" : "rds"}-${lower(var.environment)}"
   description = "My ${lower(var.name)}-db_subnet_group-for-${var.create_rds_cluster ? "cluster" : "rds"}-${lower(var.environment)} group of subnets"
-  subnet_ids  = ["${split( ",", join(",", module.aws_core_data.private_subnets))}"]
+  subnet_ids  = ["${split(",", join(",", module.aws_core_data.private_subnets))}"]
 
   tags = "${merge(
-        map(
-          "Name", "${lower(var.name)}-db-subnet-group-for-${lower(var.environment)}",
-          "Description", "${lower(var.name)}-db-subnet-group-for-${lower(var.environment)} ${var.description}"
-        ),
-        local.common_tags
-    )}"
+    map(
+      "Name", "${lower(var.name)}-db-subnet-group-for-${lower(var.environment)}",
+      "Description", "${lower(var.name)}-db-subnet-group-for-${lower(var.environment)} ${var.description}"
+    ),
+    local.common_tags
+  )}"
 }
 
 #---------------------------------------------------
@@ -246,13 +246,13 @@ resource "aws_db_parameter_group" "db_parameter_group" {
 
   name        = "${lower(var.name)}-db-parameter-group-for-${var.create_rds_cluster ? "cluster" : "rds"}-${lower(var.environment)}"
   description = "RDS ${lower(var.name)}-db_parameter_group-for-${var.create_rds_cluster ? "cluster" : "rds"}-${lower(var.environment)} parameter group for ${var.engine}"
-  family      = "${length(var.db_parametergroup_family)>0? var.db_parametergroup_family : var.db_group_family[var.engine]}"
+  family      = "${length(var.db_parametergroup_family) > 0 ? var.db_parametergroup_family : var.db_group_family[var.engine]}"
   parameter   = "${var.default_db_parameters[var.engine]}"
 
   tags = "${merge(
-        map(
-          "Name", "${lower(var.name)}-db_parameter_group-${lower(var.environment)}"
-        ),
-        local.common_tags
-    )}"
+    map(
+      "Name", "${lower(var.name)}-db_parameter_group-${lower(var.environment)}"
+    ),
+    local.common_tags
+  )}"
 }

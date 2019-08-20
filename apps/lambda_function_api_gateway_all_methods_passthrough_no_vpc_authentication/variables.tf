@@ -1,9 +1,7 @@
 variable "region" {
   default = "eu-west-1"
 }
-variable "account_type" {
-  default = "sandbox"
-}
+variable "account_type" {}
 variable "tags_business_unit" {
   default = "Albumprinter"
 }
@@ -47,16 +45,16 @@ variable "private" {
 
 variable "response_template" {
   type = "map"
-  default ={
+  default = {
     "application/json" = ""
   }
 }
 
-variable "lambda_memory_alert_threshold" {} 
-variable "alarm_action_arn" {} 
+variable "lambda_memory_alert_threshold" {}
+variable "alarm_action_arn" {}
 
 variable "iam_policy_document" {
-  default =<<EOF
+  default = <<EOF
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -118,9 +116,9 @@ variable "iam_policy_document" {
 EOF
 }
 
-variable "retention_days" { 
-  default = "30" 
-} 
+variable "retention_days" {
+  default = "30"
+}
 
 variable "binary_media_types" {
   default = ["application/octet-stream", "image/*"]

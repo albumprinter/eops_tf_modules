@@ -1,9 +1,7 @@
 variable "region" {
   default = "eu-west-1"
 }
-variable "account_type" {
-  default = "sandbox"
-}
+variable "account_type" {}
 variable "tags_business_unit" {
   default = "Albumprinter"
 }
@@ -33,7 +31,7 @@ variable "private" {
 
 variable "response_template" {
   type = "map"
-  default ={
+  default = {
     "application/json" = ""
   }
 }
@@ -42,7 +40,7 @@ variable "instance_count" {
   default = 1
 }
 variable "iam_policy_document" {
-  default =<<EOF
+  default = <<EOF
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -96,11 +94,11 @@ variable "chef_serverurl" {
 
 variable "SG_cidr_blocks" {
   type = "list"
-  default =  [""]
-  }
+  default = [""]
+}
 variable "SG_elb_cidr_blocks" {
   type = "list"
-  default =  [""]
+  default = [""]
 }
 
 variable "lb_port_outside" {
@@ -147,11 +145,11 @@ variable "elb_sg_ingress_protocol" {
   default = "-1"
 }
 
-variable "elb_healthcheck_target"  {
+variable "elb_healthcheck_target" {
   default = "TCP:22"
 }
 
-variable "chef_attributes_json"  {
+variable "chef_attributes_json" {
   default = <<-EOF
   {
     "key": "value"

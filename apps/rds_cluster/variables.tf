@@ -29,9 +29,7 @@ variable "region" {
   default     = "eu-west-1"
 }
 
-variable "account_type" {
-  default = "sandbox"
-}
+variable "account_type" {}
 
 variable "description" {
   description = "Why we just need description for description var?"
@@ -148,12 +146,12 @@ variable "default_ports" {
   type        = "map"
 
   default = {
-    mysql             = "3306"
-    aurora            = "3306"
+    mysql               = "3306"
+    aurora              = "3306"
     "aurora-mysql"      = "3306"
-    postgres          = "5432"
+    postgres            = "5432"
     "aurora-postgresql" = "5432"
-    oracle            = "1521"
+    oracle              = "1521"
   }
 }
 
@@ -233,15 +231,15 @@ variable "default_db_parameters" {
       },
     ]
 
-    postgres          = []
+    postgres            = []
     "aurora-postgresql" = []
-    oracle            = []
+    oracle              = []
   }
 }
 
 variable "db_parametergroup_family" {
-  description  = "desired parameter group family"
-  default = "mysql5.6"
+  description = "desired parameter group family"
+  default     = "mysql5.6"
 }
 
 variable "db_group_family" {
@@ -249,12 +247,12 @@ variable "db_group_family" {
   type        = "map"
 
   default = {
-    mysql             = "mysql5.6"
-    aurora            = "aurora5.6"
+    mysql               = "mysql5.6"
+    aurora              = "aurora5.6"
     "aurora-mysql"      = "aurora-mysql5.7"
-    postgres          = "postgres9.6"
+    postgres            = "postgres9.6"
     "aurora-postgresql" = "aurora-postgresql9.6"
-    oracle            = "oracle-ee-12.1"
+    oracle              = "oracle-ee-12.1"
   }
 }
 

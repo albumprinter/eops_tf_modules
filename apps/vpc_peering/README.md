@@ -1,5 +1,6 @@
 <h1>USAGE:</h1>
 Module will peer the "Main" VPC from the source account with the target "Main" VPC.  
+This module will not work with the Shared VPCs
  
 <h2>Required Parameters:</h2>
 These must be set in your call to this module:

@@ -1,9 +1,7 @@
 variable "region" {
   default = "eu-west-1"
 }
-variable "account_type" {
-  default = "sandbox"
-}
+variable "account_type" {}
 variable "tags_business_unit" {
   default = "Albumprinter"
 }
@@ -55,13 +53,13 @@ variable "event_source_mapping_active" {
 
 variable "response_template" {
   type = "map"
-  default ={
+  default = {
     "application/json" = ""
   }
 }
 
 variable "iam_policy_document" {
-  default =<<EOF
+  default = <<EOF
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -119,7 +117,7 @@ variable "alarm_action_arn" {
 variable "retention_days" {
   default = "30"
 }
-variable "reserved_concurrent_executions" { 
+variable "reserved_concurrent_executions" {
   default = -1
 }
 variable "visibility_timeout_seconds" {

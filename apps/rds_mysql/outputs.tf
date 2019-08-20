@@ -16,5 +16,5 @@ output "db_admin_username" {
 
 output "db_admin_password" {
   sensitive = true
-  value = "${aws_db_instance.database.password}"
+  value     = "${aws_db_instance.database.password}"
 }

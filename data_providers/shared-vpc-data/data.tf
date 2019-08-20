@@ -33,3 +33,9 @@ data "aws_subnet" "private" {
   count = "${length(data.aws_subnet_ids.private.ids)}"
   id    = "${data.aws_subnet_ids.private.ids[count.index]}"
 }
+data "aws_caller_identity" "current" {}
+data "aws_availability_zones" "available" {}
+
+data "aws_vpc_endpoint_service" "s3" {
+  service = "s3"
+}
