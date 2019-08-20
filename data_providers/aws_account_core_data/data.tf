@@ -26,10 +26,10 @@ data "aws_vpc_endpoint_service" "s3" {
   service = "s3"
 }
 
-data "aws_vpc" "main" {
-  tags {
-    Name = "main"
-  }
-}
+# data "aws_vpc" "main" {
+#   tags {
+#     Name = "main"
+#   }
+# }
 
 data "aws_caller_identity" "current" {}
