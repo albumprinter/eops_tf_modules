@@ -36,10 +36,39 @@ resource "aws_iam_role" "iam_for_app" {
 EOF
 }
 
+data "aws_caller_identity" "current" {}
+data "aws_iam_policy_document" "default_policy" {
+  statement {
+    actions   = [
+                "logs:CreateLogStream",
+                "logs:DescribeLogStreams",
+                "logs:PutLogEvents",
+                "logs:GetLogEvents"
+               ]
+    resources = ["arn:aws:logs:${var.region}:${data.aws_caller_identity.current.account_id}:log-group:/aws/lambda/${var.app_name}:*"]
+  }
+  statement {
+    actions = [
+      "ec2:CreateNetworkInterface",
+      "ec2:DescribeNetworkInterfaces",
+      "ec2:DeleteNetworkInterface"
+    ]
+    resources = ["*"]
+  }
+}
+
+locals {
+  iam_policy_doc = "${var.iam_policy_document == "" ? data.aws_iam_policy_document.default_policy.json : var.iam_policy_document}"
+}
+
+output "iam_policy_document" {
+  value = "${local.iam_policy_doc}"
+}
+
 resource "aws_iam_role_policy" "iam_policy_for_app" {
   name = "${var.app_name}"
   role = "${aws_iam_role.iam_for_app.id}"
-  policy = "${var.iam_policy_document}"
+  policy = "${local.iam_policy_doc}"
 }
 
 resource "aws_security_group" "sg_for_app" {
@@ -73,6 +102,9 @@ resource "aws_security_group" "sg_for_app" {
   }
   tags = "${local.tags}"
 }
+
+
+
 
 resource "aws_lambda_function" "app" {
   s3_bucket = "${var.lambda_bucket_name}"

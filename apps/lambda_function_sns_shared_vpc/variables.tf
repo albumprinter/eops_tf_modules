@@ -53,6 +53,7 @@ variable "response_template" {
   }
 }
 variable "iam_policy_document" {
+  default = ""
 }
 variable "lambda_sns_subscription_arn" {
   default = ""
