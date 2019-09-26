@@ -2,10 +2,8 @@ resource "aws_sns_topic" "sns-topic" {
   name = "${var.app_name}"
 }
 
-resource "aws_sns_topic_policy" "default" {
-  arn = "${aws_sns_topic.sns-topic.arn}"
-
-  policy = <<POLICY
+locals {
+  default_policy_doc = <<POLICY
   {
     "Version": "2012-10-17",
     "Id": "${var.app_name}-policy",
@@ -31,4 +29,11 @@ resource "aws_sns_topic_policy" "default" {
     ]
   }
   POLICY
+  iam_policy_doc = "${var.iam_policy_document == "" ? local.default_policy_doc : var.iam_policy_document}"
+}
+
+resource "aws_sns_topic_policy" "default" {
+  arn = "${aws_sns_topic.sns-topic.arn}"
+
+  policy = "${local.iam_policy_doc}"
 }

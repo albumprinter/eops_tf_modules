@@ -3,7 +3,9 @@ variable "region" {
 }
 variable "app_name" {
 }
-variable "sns_extra_policy_statements"
-{
+variable "iam_policy_document" {
+  default = ""
+}
+variable "sns_extra_policy_statements" {
   default = ""
 }

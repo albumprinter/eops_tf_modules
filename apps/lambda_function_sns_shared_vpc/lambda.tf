@@ -61,10 +61,6 @@ locals {
   iam_policy_doc = "${var.iam_policy_document == "" ? data.aws_iam_policy_document.default_policy.json : var.iam_policy_document}"
 }
 
-output "iam_policy_document" {
-  value = "${local.iam_policy_doc}"
-}
-
 resource "aws_iam_role_policy" "iam_policy_for_app" {
   name = "${var.app_name}"
   role = "${aws_iam_role.iam_for_app.id}"
