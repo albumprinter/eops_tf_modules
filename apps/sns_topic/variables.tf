@@ -25,3 +25,7 @@ variable "sns_extra_policy_statements"
 {
   default = ""
 }
+
+variable "enabled" {
+  default = "1"
+}
