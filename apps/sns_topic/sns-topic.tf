@@ -1,7 +1,7 @@
 resource "aws_sns_topic" "sns-topic" {
   name =  "${var.app_name}"
   tags =  "${local.tags}"
-  count = "${var.enabled}"
+  # count = "${var.enabled}"
 }
 
 locals {
