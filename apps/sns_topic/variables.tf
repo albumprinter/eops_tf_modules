@@ -3,9 +3,12 @@ variable "region" {
 }
 variable "app_name" {
 }
-variable "iam_policy_document" {}
 variable "environment" {}
 variable "description" {}
+
+variable "iam_policy_document" {
+  default = local.iam_policy_document
+}
 
 # tags
 variable "tags_business_unit" {
@@ -19,10 +22,6 @@ variable "tags_purpose" {
 }
 # end tags
 
-variable "sns_extra_policy_statements"
-{
-  default = ""
-}
 variable "sns_extra_policy_statements" {
   default = ""
 }
