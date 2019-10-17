@@ -7,7 +7,7 @@ variable "environment" {}
 variable "description" {}
 
 variable "iam_policy_document" {
-  default = local.iam_policy_document
+  default = ""
 }
 
 # tags

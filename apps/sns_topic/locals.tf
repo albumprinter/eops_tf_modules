@@ -9,7 +9,7 @@ locals {
     Description     = "${var.description}"
     Environment     = "${var.environment}"
   }
-  iam_policy_document = <<POLICY
+  doc = <<POLICY
   {
     "Version": "2012-10-17",
     "Id": "${var.app_name}-policy",
@@ -35,4 +35,5 @@ locals {
     ]
   }
   POLICY
+  iam_policy_document = "${var.iam_policy_document == "" ? local.doc : var.iam_policy_document}"
 }
