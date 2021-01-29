@@ -71,6 +71,6 @@ resource "aws_api_gateway_deployment" "app" {
   rest_api_id = "${aws_api_gateway_rest_api.app.id}"
   stage_name  = "Prod"
   triggers = {
-    always_run = "${aws_lambda_function.app.version}"
+    deploy_alias = "${var.useAlias ? var.alias : var.environment}"
   }
 }
