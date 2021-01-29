@@ -23,6 +23,7 @@ resource "aws_lambda_function" "app" {
   }
   count            = "${var.enabled}"
   tags = "${local.tags}"
+  publish = "${var.useAlias}"
 }
 
 resource "aws_iam_role" "iam_for_app" {
@@ -92,4 +93,12 @@ resource "aws_security_group" "sg_for_app" {
   }
 
   tags = "${local.tags}"
+}
+
+resource "aws_lambda_alias" "alias" {
+  count            = "${var.useAlias}"
+  name             = "${var.alias}"
+  description      = "${var.app_name} ${var.alias} alias"
+  function_name    = "${aws_lambda_function.app.arn}"
+  function_version = "${aws_lambda_function.app.version}"
 }

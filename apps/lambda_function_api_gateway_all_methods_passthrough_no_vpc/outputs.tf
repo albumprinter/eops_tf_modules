@@ -25,3 +25,19 @@ output "proxy_api_lambda_passthru_gateway_endpoint" {
 output "iam_role_arn" {
   value = "${aws_iam_role.iam_for_app.arn}"
 }
+
+output "id" {
+  value = "${aws_lambda_function.app.0.id}"
+}
+output "arn" {
+  value = "${aws_lambda_function.app.0.arn}"
+}
+output "version" {
+  value = "${aws_lambda_function.app.0.version}"
+}
+output "function_name" {
+  value = "${aws_lambda_function.app.0.function_name}"
+}
+output "name" {
+  value = "${aws_lambda_alias.alias.name}"
+}

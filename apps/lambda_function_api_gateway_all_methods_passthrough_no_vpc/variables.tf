@@ -143,3 +143,11 @@ variable "api_gateway_type" {
 variable "enable_cloudwatch_alarms" {
   default = "1"
 }
+
+variable "alias" {
+  default = "Prod"
+}
+
+variable "useAlias" {
+  default = false
+}
