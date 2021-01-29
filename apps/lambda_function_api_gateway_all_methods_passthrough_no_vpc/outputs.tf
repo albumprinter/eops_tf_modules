@@ -39,5 +39,5 @@ output "function_name" {
   value = "${aws_lambda_function.app.0.function_name}"
 }
 output "name" {
-  value = "${aws_lambda_alias.alias.name}"
+  value = "${aws_lambda_alias.alias.0.name}"
 }
