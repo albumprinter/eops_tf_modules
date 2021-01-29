@@ -70,6 +70,10 @@ resource "aws_api_gateway_deployment" "app" {
   depends_on  = ["aws_api_gateway_integration.app_integration"]
   rest_api_id = "${aws_api_gateway_rest_api.app.id}"
   stage_name  = "Prod"
+  stage_description = "Deployed at ${timestamp()}"
+  lifecycle {
+    create_before_destroy = true
+  }
   triggers = {
     deploy_alias = "${var.useAlias ? var.alias : var.environment}"
   }
