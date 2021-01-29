@@ -96,7 +96,6 @@ resource "aws_security_group" "sg_for_app" {
 }
 
 resource "aws_lambda_alias" "alias" {
-  count            = "${var.useAlias}"
   name             = "${var.alias}"
   description      = "${var.app_name} ${var.alias} alias"
   function_name    = "${aws_lambda_function.app.arn}"
