@@ -39,5 +39,5 @@ output "function_name" {
   value = "${aws_lambda_function.app.0.function_name}"
 }
 output "name" {
-  value = "${aws_lambda_alias.alias.0.name}"
+  value = "${var.useAlias ? aws_lambda_alias.alias.0.name : aws_lambda_function.app.0.function_name}"
 }
