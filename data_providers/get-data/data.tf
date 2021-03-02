@@ -12,9 +12,6 @@ data "terraform_remote_state" "terraform-ap" {
 
 data "aws_availability_zones" "available" {}
 
-data "aws_vpc_endpoint_service" "s3" {
-  service = "s3"
-}
 
 data "aws_vpc" "main" {
   tags {

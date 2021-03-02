@@ -9,9 +9,7 @@ data "aws_vpc" "default_vpc" {
   default = "true"
 }
 
-data "aws_vpc_endpoint_service" "s3" {
-  service = "s3"
-}
+
 
 data "aws_caller_identity" "current" {}
 
