@@ -28,7 +28,7 @@ variable "retention_days" {
 variable "log_group_name" {  
 }
 variable "pattern" {
-  default = "[type=REPORT,...,MemUsed,MemUnit]"
+  default = "[type=REPORT,...,label=\"Used:\", MemUsed,MemUnit=\"MB\"]"
 }
 variable "alarm_action_enabled" {
   default = "true"
