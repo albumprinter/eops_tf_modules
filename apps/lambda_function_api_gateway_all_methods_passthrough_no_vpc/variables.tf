@@ -37,6 +37,7 @@ variable "timeout" {
   default = "3"
 }
 variable "enabled" {
+  type = number
   default = 1
 }
 
@@ -122,7 +123,8 @@ variable "binary_media_types" {
 }
 
 variable "swagger_resource_enable" {
-  default = false
+  type = number
+  default = 0
 }
 
 variable "swagger_resource_path" {
