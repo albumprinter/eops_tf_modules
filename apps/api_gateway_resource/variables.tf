@@ -8,7 +8,8 @@ variable "authorization" {
 
 
 variable "api_key_required" {
-  default = "false"
+  type = number
+  default = 0
 }
 
 variable "api_key" {
