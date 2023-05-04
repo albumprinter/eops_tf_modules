@@ -132,7 +132,8 @@ variable "swagger_resource_path" {
 }
 
 variable "swagger_api_key_required" {
-  default = false
+  type = number
+  default = 0
 }
 
 variable "swagger_api_key" {
