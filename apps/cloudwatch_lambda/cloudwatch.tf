@@ -9,7 +9,7 @@ resource "aws_cloudwatch_log_metric_filter" "lambda_memory_metric" {
   depends_on = ["aws_cloudwatch_log_group.lambda_log_group"]
   pattern = "${var.pattern}"
   log_group_name = "${var.log_group_name}"
-  metric_transformation = {
+  metric_transformation {
     name = "${var.app_name}-memory"
     namespace = "Albelli"
     value = "$MemUsed"
