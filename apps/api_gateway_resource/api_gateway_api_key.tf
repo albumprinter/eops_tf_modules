@@ -14,8 +14,8 @@ resource "aws_api_gateway_usage_plan" "usage_plan" {
 } 
  
 resource "aws_api_gateway_usage_plan_key" "usage_plan_key" { 
-  key_id        = "${aws_api_gateway_api_key.0.api_key.id}" 
+  key_id        = "${aws_api_gateway_api_key.api_key.id}" 
   key_type      = "API_KEY" 
-  usage_plan_id = "${aws_api_gateway_usage_plan.0.usage_plan.id}" 
+  usage_plan_id = "${aws_api_gateway_usage_plan.usage_plan.id}" 
   count         = "${var.enable && var.api_key_required ? 1  : 0}" 
 } 
