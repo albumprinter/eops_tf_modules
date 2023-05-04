@@ -9,7 +9,7 @@ resource "aws_cloudwatch_log_metric_filter" "lambda_memory_metric" {
   depends_on = ["aws_cloudwatch_log_group.lambda_log_group"]
   pattern = "${var.pattern}"
   log_group_name = "${var.log_group_name}"
-  metric_transformation {
+  metric_transformation = {
     name = "${var.app_name}-memory"
     namespace = "Albelli"
     value = "$MemUsed"
@@ -52,7 +52,7 @@ resource "aws_cloudwatch_metric_alarm" "lambda_duration_alert" {
   ok_actions = []
   tags = "${local.tags}"
   count = "${var.enable_cloudwatch_alarms}"
-  dimensions {
+  dimensions = {
     FunctionName = "${var.app_name}"
     Resource     = "${var.app_name}"
   }
@@ -75,7 +75,7 @@ resource "aws_cloudwatch_metric_alarm" "lambda_errors" {
   ok_actions = []
   tags = "${local.tags}"
   count = "${local.enable_error_alarm}"
-  dimensions {
+  dimensions = {
     FunctionName = "${var.app_name}"
     Resource     = "${var.app_name}"
   }

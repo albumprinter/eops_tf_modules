@@ -8,7 +8,7 @@ resource "aws_instance" "app" {
   key_name = "${var.key_name}"
 
 
-  tags {
+  tags = {
     Domain          = "${var.tags_domain}"
     Name            = "${upper(var.environment)}-${upper(var.app_name)}00${count.index + 1}-AWS"
     "Business Unit" = "${var.tags_business_unit}"
@@ -85,7 +85,7 @@ resource "aws_security_group" "app" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags {
+  tags = {
     Domain          = "${var.tags_domain}"
     Name            = "${var.app_name}"
     "Business Unit" = "${var.tags_business_unit}"

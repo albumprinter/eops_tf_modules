@@ -19,7 +19,7 @@ resource "aws_api_gateway_method" "app" {
   resource_id = "${aws_api_gateway_resource.app.id}"
   http_method = "ANY"
   authorization = "NONE"
-  request_parameters {
+  request_parameters = {
     //    "method.request.path.accountId" = true
   }
 }

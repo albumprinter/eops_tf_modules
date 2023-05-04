@@ -27,7 +27,7 @@ resource "aws_elb" "bar" {
   connection_draining         = true
   connection_draining_timeout = 400
 
-  tags {
+  tags = {
     Domain          = "${var.tags_domain}"
     Name            = "ELB-${var.app_name}"
     "Business Unit" = "${var.tags_business_unit}"
@@ -61,7 +61,7 @@ resource "aws_security_group" "app_elb" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags {
+  tags = {
     Domain          = "${var.tags_domain}"
     Name            = "${var.app_name}"
     "Business Unit" = "${var.tags_business_unit}"

@@ -1,5 +1,5 @@
 data "aws_vpc" "working_vpc" {
-  tags {
+  tags = {
     Name = "${var.account_type}_vpc"
   }
 }
@@ -11,7 +11,7 @@ data "aws_subnet_ids" "all" {
 data "aws_subnet_ids" "public" {
   vpc_id = "${data.aws_vpc.working_vpc.id}"
 
-  tags {
+  tags = {
     Name = "public-*"
   }
 }
@@ -19,7 +19,7 @@ data "aws_subnet_ids" "public" {
 data "aws_subnet_ids" "private" {
   vpc_id = "${data.aws_vpc.working_vpc.id}"
 
-  tags {
+  tags = {
     Name = "private-*"
   }
 }

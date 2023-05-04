@@ -7,7 +7,7 @@ resource "aws_instance" "app" {
   vpc_security_group_ids     = ["${aws_security_group.app.id}"]
   subnet_id           = "${element(module.aws_core_data.private_subnets,count.index)}"
 
-  tags {
+  tags = {
     Domain          = "${var.tags_domain}"
     Name            = "${var.app_name}${count.index + 1}"
     "Business Unit" = "${var.tags_business_unit}"
@@ -28,7 +28,7 @@ resource "aws_security_group" "app" {
   name        = "EC2-${var.app_name}"
   description = "Allow inbound traffic for ${var.app_name}"
   vpc_id      = "${module.aws_core_data.vpc_id}"
-  tags {
+  tags = {
     Domain          = "${var.tags_domain}"
     Name            = "${var.app_name}"
     "Business Unit" = "${var.tags_business_unit}"

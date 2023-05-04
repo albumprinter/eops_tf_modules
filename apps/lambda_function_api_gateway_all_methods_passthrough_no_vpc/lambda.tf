@@ -98,6 +98,6 @@ resource "aws_security_group" "sg_for_app" {
 resource "aws_lambda_alias" "alias" {
   name             = "${var.alias}"
   description      = "${var.app_name} ${var.alias} alias"
-  function_name    = "${aws_lambda_function.app.arn}"
-  function_version = "${aws_lambda_function.app.version}"
+  function_name    = "${aws_lambda_function.app[0].arn}"
+  function_version = "${aws_lambda_function.app[0].version}"
 }

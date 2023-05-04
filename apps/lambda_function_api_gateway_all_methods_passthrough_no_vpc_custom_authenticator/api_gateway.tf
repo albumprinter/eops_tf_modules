@@ -22,7 +22,7 @@ resource "aws_api_gateway_method" "app" {
   # authorization = "CUSTOM"
   # authorizer_id = "${aws_api_gateway_authorizer.app_authorizer.id}"
 
-  request_parameters {
+  request_parameters = {
     //    "method.request.path.accountId" = true
   }
 }

@@ -18,7 +18,7 @@ resource "aws_security_group" "security_group" {
   name = "${var.sg_name}"
   description = "${var.sg_description}"
   vpc_id = "${module.aws_account_core_data.vpc_id}"
-  tags {
+  tags = {
     Domain          = "${var.tags_domain}"
     Name            = "${var.tags_name}"
     "Business Unit" = "${var.tags_business_unit}"
@@ -46,7 +46,7 @@ resource "aws_instance" "ec_instance" {
     delete_on_termination = true
   }
 
-  tags {
+  tags = {
     Domain          = "${var.tags_domain}"
     Name            = "${var.application_name}-${count.index}"
     "Business Unit" = "${var.tags_business_unit}"

@@ -1,6 +1,6 @@
 # Data sources
 data "aws_vpc" "main" {
-  tags {
+  tags = {
     Name = "main"
   }
 }
@@ -19,7 +19,7 @@ data "aws_subnet" "public" {
   vpc_id = "${data.aws_vpc.main.id}"
   availability_zone = "${element(sort(data.aws_availability_zones.availability_zones.names), count.index)}"
 
-  tags {
+  tags = {
     Name = "public-*"
   }
 
@@ -30,7 +30,7 @@ data "aws_subnet" "private" {
   vpc_id = "${data.aws_vpc.main.id}"
   availability_zone = "${element(sort(data.aws_availability_zones.availability_zones.names), count.index)}"
 
-  tags {
+  tags = {
     Name = "private-*"
   }
 
@@ -39,7 +39,7 @@ data "aws_subnet" "private" {
 
 data "aws_route_table" "public" {
   vpc_id = "${data.aws_vpc.main.id}"
-  tags {
+  tags = {
     Name = "*-public"
   }
 }

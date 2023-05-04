@@ -14,7 +14,7 @@ data "aws_availability_zones" "available" {}
 
 
 data "aws_vpc" "main" {
-  tags {
+  tags = {
     Name = "${var.vpc_name}"
   }
 }

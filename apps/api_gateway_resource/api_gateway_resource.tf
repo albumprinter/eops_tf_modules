@@ -6,7 +6,7 @@ resource "aws_api_gateway_resource" "resource_parent" {
 }
 
 resource "aws_api_gateway_resource" "resource" {
-  parent_id   = "${aws_api_gateway_resource.resource_parent.id}"
+  parent_id   = "${aws_api_gateway_resource.resource_parent[0].id}"
   rest_api_id = "${var.api_gateway_rest_api_id}"
   path_part   = "{proxy+}"
   count       = "${var.enable}"

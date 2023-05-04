@@ -17,7 +17,7 @@ provider "aws" {
 
 data "aws_vpc" "source_vpc_main" {
   provider = "aws.source_provider"
-  tags {
+  tags = {
     Name = "main"
   }
 }
@@ -37,7 +37,7 @@ provider "aws" {
 
 data "aws_vpc" "target_vpc_main" {
   provider = "aws.target_provider"
-  tags {
+  tags = {
     Name = "main"
   }
 }
