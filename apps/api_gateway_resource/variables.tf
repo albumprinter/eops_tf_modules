@@ -15,6 +15,7 @@ variable "api_key" {
 }
 
 variable "enable" {
+  type = number
   default = 1
 }
 
