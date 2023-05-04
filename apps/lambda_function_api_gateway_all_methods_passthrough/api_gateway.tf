@@ -24,7 +24,7 @@ resource "aws_api_gateway_method" "app" {
   }
 }
 
-resource "aws_api_gateway_method_response" "200" {
+resource "aws_api_gateway_method_response" "ok" {
   rest_api_id = "${aws_api_gateway_rest_api.app.id}"
   resource_id = "${aws_api_gateway_resource.app.id}"
   http_method = "${aws_api_gateway_method.app.http_method}"
