@@ -42,7 +42,7 @@ resource "aws_api_gateway_integration" "app_integration" {
   type = "AWS_PROXY"
   integration_http_method = "POST"
 //  integration_http_method = "${aws_api_gateway_method.app.http_method}"
-  uri = "${var.useAlias ? aws_lambda_alias.alias.invoke_arn : aws_lambda_function.app.invoke_arn}"
+  uri = "${var.useAlias ? aws_lambda_alias.alias.invoke_arn : aws_lambda_function.app[0].invoke_arn}"
 
   credentials = "${aws_iam_role.iam_for_app.arn}"
 }
@@ -59,7 +59,7 @@ resource "aws_api_gateway_integration_response" "app_integration_response" {
 
 
 resource "aws_lambda_permission" "allow-api-gateway-parent-resource-get" {
-  function_name = "${aws_lambda_function.app.id}"
+  function_name = "${aws_lambda_function.app[0].id}"
   statement_id = "allow-api-gateway-parent-resource-get"
   action = "lambda:InvokeFunction"
   principal = "apigateway.amazonaws.com"
