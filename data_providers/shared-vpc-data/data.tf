@@ -25,13 +25,13 @@ data "aws_subnet_ids" "private" {
 }
 
 data "aws_subnet" "public" {
-  count = "${length(data.aws_subnet_ids.public.ids)}"
-  id    = "${element(tolist(data.aws_subnet_ids.public.ids)[count.index])}"
+  for_each = toset(data.aws_subnet_ids.public.ids)
+  id       = each.value
 }
 
 data "aws_subnet" "private" {
-  count = "${length(data.aws_subnet_ids.private.ids)}"
-  id    = "${element(tolist(data.aws_subnet_ids.private.ids)[count.index])}"
+  for_each = toset(data.aws_subnet_ids.private.ids)
+  id       = each.value
 }
 data "aws_caller_identity" "current" {}
 data "aws_availability_zones" "available" {}
