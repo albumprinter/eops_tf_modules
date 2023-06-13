@@ -31,7 +31,7 @@ data "aws_subnet" "public" {
 
 data "aws_subnet" "private" {
   count = "${length(data.aws_subnet_ids.private.ids)}"
-  id    = "${tolist(data.aws_subnet_ids.public.ids)[count.index]}"
+  id    = "${tolist(data.aws_subnet_ids.private.ids)[count.index]}"
 }
 data "aws_caller_identity" "current" {}
 data "aws_availability_zones" "available" {}
