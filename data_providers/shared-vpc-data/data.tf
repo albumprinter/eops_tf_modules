@@ -32,13 +32,14 @@ data "aws_subnets" "private" {
 }
 
 data "aws_subnet" "public" {
-  for_each = data.aws_subnets.public.ids
-  id       = each.value
+  count = "${length(data.aws_subnets.public.ids)}"
+  id    = "${(data.aws_subnets.public.ids)[count.index]}"
 }
 
-data "aws_subnet" "private" {
-  for_each = data.aws_subnets.private.ids
-  id       = each.value
+data "aws_subnet" "private"  {
+  count = "${length(data.aws_subnets.private.ids)}"
+  id    = "${(data.aws_subnets.private.ids)[count.index]}"
 }
+
 data "aws_caller_identity" "current" {}
 data "aws_availability_zones" "available" {}
