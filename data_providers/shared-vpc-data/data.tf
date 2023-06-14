@@ -6,14 +6,14 @@ data "aws_vpc" "working_vpc" {
 
 data "aws_subnets" "all" {
   filter {
-    name = "vpc-id"
+    name = "${data.aws_vpc.working_vpc.id}"
     values = [data.aws_vpc.working_vpc.id]
   }
 }
 
 data "aws_subnets" "public" {
    filter {
-    name = "vpc-id"
+    name = "${data.aws_vpc.working_vpc.id}"
     values = [data.aws_vpc.working_vpc.id]
   }
   tags = {
@@ -23,7 +23,7 @@ data "aws_subnets" "public" {
 
 data "aws_subnets" "private" {
  filter {
-    name = "vpc-id"
+    name = "${data.aws_vpc.working_vpc.id}"
     values = [data.aws_vpc.working_vpc.id]
   }
   tags = {
