@@ -2,7 +2,6 @@ data "aws_vpc" "working_vpc" {
   tags = {
     Name = "${var.account_type}_vpc"
   }
-  id = var.vpc_id
 }
 
 data "aws_subnets" "all" {
