@@ -5,15 +5,15 @@ data "aws_vpc" "working_vpc" {
 }
 
 data "aws_subnets" "all" {
-   filter {
-    name   = "vpc-id"
+  filter {
+    name = "vpc-id"
     values = [data.aws_vpc.working_vpc.id]
   }
 }
 
 data "aws_subnets" "public" {
-  filter {
-    name   = "vpc-id"
+   filter {
+    name = "vpc-id"
     values = [data.aws_vpc.working_vpc.id]
   }
   tags = {
@@ -22,8 +22,8 @@ data "aws_subnets" "public" {
 }
 
 data "aws_subnets" "private" {
-  filter {
-    name   = "vpc-id"
+ filter {
+    name = "vpc-id"
     values = [data.aws_vpc.working_vpc.id]
   }
   tags = {
@@ -32,13 +32,13 @@ data "aws_subnets" "private" {
 }
 
 data "aws_subnet" "public" {
-  for_each = toset(data.aws_subnets.public.ids)
-  id       = each.value
+  count = "${length(data.aws_subnets.public.ids)}"
+  id    = "${data.aws_subnets.public.ids[count.index]}"
 }
 
 data "aws_subnet" "private" {
-  for_each = toset(data.aws_subnets.private.ids)
-  id       = each.value
+  count = "${length(data.aws_subnets.private.ids)}"
+  id    = "${data.aws_subnets.private.ids[count.index]}"
 }
 data "aws_caller_identity" "current" {}
 data "aws_availability_zones" "available" {}

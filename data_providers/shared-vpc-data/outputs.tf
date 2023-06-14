@@ -28,7 +28,3 @@ output "public_subnets" {
 output "private_subnets" {
   value = data.aws_subnets.private.ids
 }
-
-output "private_subnets_1" {
-  value = data.aws_subnet.private.id
-}
