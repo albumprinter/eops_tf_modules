@@ -15,7 +15,8 @@ variable "api_key" {
 }
 
 variable "enable" {
-  default = true
+  type = number
+  default = 1
 }
 
 # resource
