@@ -5,27 +5,18 @@ data "aws_vpc" "working_vpc" {
 }
 
 data "aws_subnets" "all" {
-  filter {
-    name = "${data.aws_vpc.working_vpc.id}"
-    values = [data.aws_vpc.working_vpc.id]
-  }
+  vpc_id = "${data.aws_vpc.working_vpc.id}"
 }
 
 data "aws_subnets" "public" {
-   filter {
-    name = "${data.aws_vpc.working_vpc.id}"
-    values = [data.aws_vpc.working_vpc.id]
-  }
+  vpc_id = "${data.aws_vpc.working_vpc.id}"
   tags = {
     Tier = "public-*"
   }
 }
 
 data "aws_subnets" "private" {
- filter {
-    name = "${data.aws_vpc.working_vpc.id}"
-    values = [data.aws_vpc.working_vpc.id]
-  }
+  vpc_id = "${data.aws_vpc.working_vpc.id}"
   tags = {
     Tier = "private-*"
   }
