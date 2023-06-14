@@ -22,9 +22,9 @@ output "availability_zones" {
 }
 
 output "public_subnets" {
-  value = [for s in data.aws_subnets.public : s.ids]
+  value = [for s in data.aws_subnets.public : s.values]
 }
 
 output "private_subnets" {
-  value = [for s in data.aws_subnets.private : s.ids]
+  value = [for s in data.aws_subnets.private : s.values]
 }
