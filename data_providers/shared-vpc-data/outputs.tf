@@ -3,15 +3,15 @@ output "vpc_id" {
 }
 
 output "all_subnet_ids" {
-  value = data.aws_subnets.all.ids
+  value = ["${data.aws_subnets.all.ids}"]
 }
 
 output "public_subnet_ids" {
-  value = data.aws_subnets.public.ids
+  value = ["${data.aws_subnets.public.ids}"]
 }
 
 output "private_subnet_ids" {
-  value = data.aws_subnets.private.ids
+  value = ["${data.aws_subnets.private.ids}"]
 }
 output "account_id" {
   value = "${data.aws_caller_identity.current.account_id}"
