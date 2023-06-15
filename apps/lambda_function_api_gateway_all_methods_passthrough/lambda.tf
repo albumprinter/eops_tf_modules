@@ -19,7 +19,7 @@ resource "aws_lambda_function" "app" {
   memory_size = "${var.memory_size}"
   timeout = "${var.timeout}"
   vpc_config {
-    subnet_ids = flatten([module.aws_core_data.private_subnets])
+    subnet_ids = flatten([var.private])
     //subnet_ids = flatten([var.private == 1 ?   module.aws_core_data.private_subnets :  concat(module.aws_core_data.private_subnets,module.aws_core_data.public_subnets)])
     security_group_ids = ["${aws_security_group.sg_for_app.id}"]
   }
