@@ -44,6 +44,7 @@ variable "enabled" {
   default = 1
 }
 variable "private" {
+  type = number
   default = 1
 }
 
