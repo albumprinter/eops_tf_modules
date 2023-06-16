@@ -3,6 +3,6 @@ resource "aws_api_gateway_method" "method" {
   resource_id      = "${aws_api_gateway_resource.resource[0].id}"
   http_method      = "${var.resource_http_method}"
   authorization    = "${var.authorization}"
-  api_key_required = "${var.api_key_required}" 
-  count            = "${var.enable}"
+  api_key_required = "${var.api_key_required}"
+  count            = "${var.enable ? 1 : 0}"
 }

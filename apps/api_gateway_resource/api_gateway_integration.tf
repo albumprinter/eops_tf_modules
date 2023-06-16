@@ -6,5 +6,5 @@ resource "aws_api_gateway_integration" "integration" {
   integration_http_method = "${var.api_gateway_integration_method}"
   uri                     = "${var.api_gateway_integration_uri}"
   credentials             = "${var.api_gateway_integration_credentials}"
-  count                   = "${var.enable}"
+  count                   = "${var.enable ? 1 : 0}"
 }
