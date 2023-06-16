@@ -130,8 +130,7 @@ variable "binary_media_types" {
 }
 
 variable "swagger_resource_enable" {
-  type = number
-  default = 0
+  default = false
 }
 
 variable "swagger_resource_path" {
@@ -139,8 +138,7 @@ variable "swagger_resource_path" {
 }
 
 variable "swagger_api_key_required" {
-  type = number
-  default = 0
+  default = false
 }
 
 variable "swagger_api_key" {
