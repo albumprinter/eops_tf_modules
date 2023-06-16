@@ -8,16 +8,14 @@ variable "authorization" {
 
 
 variable "api_key_required" {
-  type = number
-  default = 0
+  default = false
 }
 
 variable "api_key" {
 }
 
 variable "enable" {
-  type = number
-  default = 1
+  default = true
 }
 
 # resource
