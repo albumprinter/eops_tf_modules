@@ -8,7 +8,7 @@ resource "aws_cloudwatch_event_rule" "app" {
 
 resource "aws_cloudwatch_event_target" "lambda" {
   target_id = "${var.app_name}"
-  rule      = "${aws_cloudwatch_event_rule.app.name}"
-  arn       = "${aws_lambda_function.app.arn}"
+  rule      = "${aws_cloudwatch_event_rule.app[0].name}"
+  arn       = "${aws_lambda_function.app[0].arn}"
   count     = "${var.enabled}"
 }
