@@ -3,7 +3,8 @@ resource "aws_cloudwatch_event_rule" "app" {
   schedule_expression = "${var.schedule_expression}"
   count               = "${var.enabled}"
   tags = "${local.tags}"
-  is_enabled = "${var.cloudwatch_event_rule_is_enabled}"
+  
+  is_enabled = "${cloudwatch_event_rule_is_enabled > 0 ? true : false}"
 }
 
 resource "aws_cloudwatch_event_target" "lambda" {

@@ -33,8 +33,7 @@ resource "aws_lambda_event_source_mapping" "event_source_mapping" {
   batch_size       = 1
   event_source_arn = "${aws_sqs_queue.sqs_queue.arn}"
   function_name    = "${aws_lambda_function.app[0].arn}"
-  boolean_value    = var.event_source_mapping_active > 0 ? true : false
-  enabled          = "${boolean_value}"
+  enabled          = "${var.event_source_mapping_active > 0 ? true : false}"
 }
 
 resource "aws_iam_role" "iam_for_app" {
