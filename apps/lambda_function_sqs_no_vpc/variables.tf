@@ -48,7 +48,7 @@ variable "vpc_enabled" {
 }
 
 variable "event_source_mapping_active" {
-  default = 1
+  default = true
 }
 
 variable "response_template" {
