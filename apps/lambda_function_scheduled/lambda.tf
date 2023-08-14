@@ -32,9 +32,9 @@ resource "aws_lambda_function" "app" {
 resource "aws_lambda_permission" "cloudwatch" {
   statement_id  = "AllowExecutionFromCloudWatch"
   action        = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.app.arn}"
+  function_name = "${aws_lambda_function.app[0].arn}"
   principal     = "events.amazonaws.com"
-  source_arn    = "${aws_cloudwatch_event_rule.app.arn}"
+  source_arn    = "${aws_cloudwatch_event_rule.app[0].arn}"
   count         = "${var.enabled}"
 }
 
