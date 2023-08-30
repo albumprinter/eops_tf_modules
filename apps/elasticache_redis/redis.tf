@@ -40,7 +40,7 @@ resource "aws_security_group_rule" "redis_egress" {
 
 resource "aws_elasticache_subnet_group" "redis" {
   name       = "${var.app_name}"
-  subnet_ids = ["${split(",", join(",", module.aws_core_data.private_subnets))}"]
+  subnet_ids = flatten([module.aws_core_data.private_subnets])
 }
 
 #
@@ -101,11 +101,11 @@ resource "aws_cloudwatch_metric_alarm" "cache_cpu" {
 
   threshold = "${var.alarm_cpu_threshold}"
 
-  dimensions {
+  dimensions = {
     CacheClusterId = "${aws_elasticache_replication_group.redis.id}-00${count.index + 1}"
   }
 
-  alarm_actions = ["${var.alarm_actions}"]
+  alarm_actions = "${var.alarm_actions}"
 }
 
 resource "aws_cloudwatch_metric_alarm" "cache_memory" {
@@ -122,11 +122,11 @@ resource "aws_cloudwatch_metric_alarm" "cache_memory" {
 
   threshold = "${var.alarm_memory_threshold}"
 
-  dimensions {
+  dimensions = {
     CacheClusterId = "${aws_elasticache_replication_group.redis.id}-00${count.index + 1}"
   }
 
-  alarm_actions = ["${var.alarm_actions}"]
+  alarm_actions = "${var.alarm_actions}"
 }
 
 
