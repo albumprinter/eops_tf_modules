@@ -37,7 +37,6 @@ resource "aws_security_group_rule" "redis_egress" {
 }
 
 
-
 resource "aws_elasticache_subnet_group" "redis" {
   name       = "${var.app_name}"
   subnet_ids = flatten([module.aws_core_data.private_subnets])
@@ -48,9 +47,9 @@ resource "aws_elasticache_subnet_group" "redis" {
 #
 resource "aws_elasticache_replication_group" "redis" {
   replication_group_id          = "${lower(var.cache_identifier)}"
-  replication_group_description = "${var.description}"
+  description = "${var.description}"
   automatic_failover_enabled    = "${var.automatic_failover_enabled}"
-  number_cache_clusters         = "${var.number_cache_clusters}"
+  num_cache_clusters         = "${var.number_cache_clusters}"
   node_type                     = "${var.node_type}"
   engine_version                = "${var.engine_version}"
   parameter_group_name          = "${var.parameter_group}"
