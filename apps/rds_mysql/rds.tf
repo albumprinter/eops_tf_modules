@@ -45,22 +45,23 @@ resource "aws_db_subnet_group" "database" {
 resource "aws_db_instance" "database" {
   db_name = "${var.app_name}"
   //  depends_on = ["aws_db_subnet_group.database", "aws_security_group.database"]
-  identifier                = "${var.environment}-${var.app_name}"
-  allocated_storage         = "${var.db_storage_size}"
-  engine                    = "mysql"
-  engine_version            = "${var.db_engine_version}"
-  instance_class            = "${var.db_instance_size}"
-  username                  = "${var.db_admin_username}"
-  password                  = "${var.db_admin_password}"
-  db_subnet_group_name      = "${aws_db_subnet_group.database.name}"
-  parameter_group_name      = "${var.db_parameter_group}"
-  final_snapshot_identifier = "${var.environment}-${var.app_name}"
-  backup_retention_period   = "${var.db_backup_retention_period}"
-  backup_window             = "${var.db_backup_window}"
-  maintenance_window        = "${var.db_maintenance_window}"
-  multi_az                  = "${var.db_multi_az}"
-  vpc_security_group_ids    = ["${aws_security_group.database.id}"]
-  publicly_accessible       = false
+  identifier                  = "${var.environment}-${var.app_name}"
+  allocated_storage           = "${var.db_storage_size}"
+  engine                      = "mysql"
+  engine_version              = "${var.db_engine_version}"
+  instance_class              = "${var.db_instance_size}"
+  username                    = "${var.db_admin_username}"
+  password                    = "${var.db_admin_password}"
+  db_subnet_group_name        = "${aws_db_subnet_group.database.name}"
+  parameter_group_name        = "${var.db_parameter_group}"
+  final_snapshot_identifier   = "${var.environment}-${var.app_name}"
+  backup_retention_period     = "${var.db_backup_retention_period}"
+  backup_window               = "${var.db_backup_window}"
+  maintenance_window          = "${var.db_maintenance_window}"
+  multi_az                    = "${var.db_multi_az}"
+  vpc_security_group_ids      = ["${aws_security_group.database.id}"]
+  allow_major_version_upgrade = "${var.db_allow_major_version_upgrade}"
+  publicly_accessible         = false
   lifecycle {
     prevent_destroy = true
   }
