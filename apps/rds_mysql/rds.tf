@@ -54,6 +54,7 @@ resource "aws_db_instance" "database" {
   password                    = "${var.db_admin_password}"
   db_subnet_group_name        = "${aws_db_subnet_group.database.name}"
   parameter_group_name        = "${var.db_parameter_group}"
+  option_group_name           = "${var.db_option_group_name}"
   final_snapshot_identifier   = "${var.environment}-${var.app_name}"
   backup_retention_period     = "${var.db_backup_retention_period}"
   backup_window               = "${var.db_backup_window}"

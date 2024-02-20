@@ -36,6 +36,8 @@ variable "db_engine_version" {
   default = "5.6.22"
 }
 
+variable "db_option_group_name" {}
+
 variable "db_allow_major_version_upgrade" {
   default = false
 }
