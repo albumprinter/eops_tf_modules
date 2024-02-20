@@ -36,6 +36,10 @@ variable "db_engine_version" {
   default = "5.6.22"
 }
 
+variable "db_allow_major_version_upgrade" {
+  default = false
+}
+
 variable "db_instance_size" {
   default = "db.t2.micro"
 }
