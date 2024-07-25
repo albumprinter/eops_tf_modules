@@ -24,7 +24,7 @@ variable "runtime" {
 variable "handler" {}
 variable "environment" {}
 variable "variables" {
-  type = map(string)
+  type = "map"
   default = {
     env = ""
   }
@@ -48,7 +48,7 @@ variable "private" {
 }
 
 variable "response_template" {
-  type = map(string)
+  type = "map"
   default = {
     "application/json" = ""
   }

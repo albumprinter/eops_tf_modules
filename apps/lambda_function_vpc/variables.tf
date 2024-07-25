@@ -25,7 +25,7 @@ variable "lambda_bucket_name" {}
 
 variable "environment" {}
 variable "variables" {
-  type = map(string)
+  type = "map"
   default = {
     ENCODING = "utf-8"
     //    SUMO_ENDPOINT=""

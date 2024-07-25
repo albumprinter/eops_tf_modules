@@ -20,7 +20,7 @@ variable "runtime" {
 variable "handler" {}
 variable "environment" {}
 variable "variables" {
-  type = map(string)
+  type = "map"
   default = {
     env = ""
   }
@@ -52,7 +52,7 @@ variable "event_source_mapping_active" {
 }
 
 variable "response_template" {
-  type = map(string)
+  type = "map"
   default = {
     "application/json" = ""
   }
