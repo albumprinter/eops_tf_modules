@@ -17,7 +17,7 @@ variable "asg_sg_ingress" {
 }
 
 variable "asg_sg_tags" {
-  type = "map"
+  type = map(string)
 }
 
 variable "subnet_ids" {

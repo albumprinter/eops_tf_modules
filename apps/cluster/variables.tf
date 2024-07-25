@@ -30,7 +30,7 @@ variable "private" {
 }
 
 variable "response_template" {
-  type = "map"
+  type = map(string)
   default = {
     "application/json" = ""
   }

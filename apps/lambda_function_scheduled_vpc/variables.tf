@@ -21,7 +21,7 @@ variable "runtime" {
 variable "handler" {}
 variable "environment" {}
 variable "variables" {
-  type = "map"
+  type = map(string)
   default = {
     env = ""
   }

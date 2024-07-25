@@ -34,11 +34,11 @@ variable "asg_tags" {
 }
 
 variable "asg_sg_tags" {
-  type = "map"
+  type = map(string)
 }
 
 variable "alb_sg_tags" {
-  type ="map"
+  type = map(string)
 }
 
 variable "security_groups" {
@@ -52,7 +52,7 @@ variable "alb_security_groups" {
 }
 
 variable "alb_tags" {
-  type = "map"
+  type = map(string)
 }
 
 variable "associate_public_ip" {

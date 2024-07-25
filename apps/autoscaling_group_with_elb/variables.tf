@@ -34,7 +34,7 @@ variable "asg_tags" {
 }
 
 variable "asg_sg_tags" {
-  type = "map"
+  type = map(string)
 }
 
 variable "elb_sg_tags" {
@@ -52,7 +52,7 @@ variable "elb_security_groups" {
 }
 
 variable "elb_tags" {
-  type = "map"
+  type = map(string)
 }
 
 variable "associate_public_ip" {

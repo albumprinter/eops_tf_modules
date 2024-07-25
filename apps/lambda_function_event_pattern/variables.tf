@@ -17,7 +17,7 @@ variable "filename" {
 }
 
 variable "lambda_env" {
-  type = "map"
+  type = map(string)
   default = {
     env = ""
   }
