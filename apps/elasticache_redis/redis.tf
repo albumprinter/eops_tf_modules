@@ -55,6 +55,7 @@ resource "aws_elasticache_replication_group" "redis" {
   parameter_group_name          = "${var.parameter_group}"
   subnet_group_name             = "${aws_elasticache_subnet_group.redis.name}"
   security_group_ids            = ["${aws_security_group.redis.id}"]
+  apply_immediately             = "${var.apply_immediately}"
   maintenance_window            = "${var.maintenance_window}"
   notification_topic_arn        = "${var.notification_topic_arn}"
   port                          = 6379
