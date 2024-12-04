@@ -38,6 +38,10 @@ variable "parameter_group" {
   default     = "default.redis3.2"
 }
 
+variable "apply_immediately" {
+  default = false
+}
+
 variable "maintenance_window" {}
 
 variable "number_cache_clusters" {
