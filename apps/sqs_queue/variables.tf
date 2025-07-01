@@ -6,15 +6,13 @@ variable "add_stale_message_cloudwatch" {
 variable "add_error_messages_cloudwatch" {
   default = 1
 }
-variable "extra_policy_statements"
-{
+variable "extra_policy_statements" {
   default = ""
 }
 variable "sns_alert_arn" {
   default = ""
 }
-variable "description"
-{
+variable "description" {
   default = ""
 }
 variable "receive_wait_time_seconds" {
