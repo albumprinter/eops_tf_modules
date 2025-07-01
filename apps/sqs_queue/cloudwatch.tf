@@ -10,7 +10,7 @@ resource "aws_cloudwatch_metric_alarm" "stale_messages_alarm_1" {
   datapoints_to_alarm = "1"
   alarm_actions       = ["${var.sns_alert_arn}"]
   count               = "${var.add_stale_message_cloudwatch}"
-  dimensions {
+  dimensions = {
     QueueName = "${aws_sqs_queue.sqs_queue.name}"
   }
   tags = "${local.tags}"
@@ -28,7 +28,7 @@ resource "aws_cloudwatch_metric_alarm" "stale_messages_alarm_2" {
   datapoints_to_alarm = "1"
   alarm_actions       = ["${var.sns_alert_arn}"]
   count               = "${var.add_stale_message_cloudwatch}"
-  dimensions {
+  dimensions = {
     QueueName = "${aws_sqs_queue.sqs_queue.name}"
   }
   tags = "${local.tags}"
@@ -46,7 +46,7 @@ resource "aws_cloudwatch_metric_alarm" "stale_messages_alarm_3" {
   datapoints_to_alarm = "1"
   alarm_actions       = ["${var.sns_alert_arn}"]
   count               = "${var.add_stale_message_cloudwatch}"
-  dimensions {
+  dimensions = {
     QueueName = "${aws_sqs_queue.sqs_queue.name}"
   }
   tags = "${local.tags}"
@@ -65,7 +65,7 @@ resource "aws_cloudwatch_metric_alarm" "error_messages_alarm_1" {
   datapoints_to_alarm = "1"
   alarm_actions       = ["${var.sns_alert_arn}"]
   count               = "${var.add_error_messages_cloudwatch}"
-  dimensions {
+  dimensions = {
     QueueName = "${aws_sqs_queue.sqs_error_queue.name}"
   }
   tags = "${local.tags}"
@@ -84,7 +84,7 @@ resource "aws_cloudwatch_metric_alarm" "error_messages_alarm_2" {
   datapoints_to_alarm = "1"
   alarm_actions       = ["${var.sns_alert_arn}"]
   count               = "${var.add_error_messages_cloudwatch}"
-  dimensions {
+  dimensions = {
     QueueName = "${aws_sqs_queue.sqs_error_queue.name}"
   }
   tags = "${local.tags}"
@@ -103,7 +103,7 @@ resource "aws_cloudwatch_metric_alarm" "error_messages_alarm_3" {
   datapoints_to_alarm = "1"
   alarm_actions       = ["${var.sns_alert_arn}"]
   count               = "${var.add_error_messages_cloudwatch}"
-  dimensions {
+  dimensions = {
     QueueName = "${aws_sqs_queue.sqs_error_queue.name}"
   }
   tags = "${local.tags}"
