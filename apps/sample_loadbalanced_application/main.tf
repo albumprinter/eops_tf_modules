@@ -60,6 +60,7 @@ resource "aws_security_group" "sg_elb" {
     protocol    = "${var.sg-protocol}"
     cidr_blocks = [
       "185.184.204.70/32",
+      "45.86.177.245/32",
       "62.97.245.10/32",
       "185.184.204.74/32",
       "62.102.226.22/32",
@@ -92,6 +93,7 @@ resource "aws_security_group" "sg_application" {
     protocol    = "${var.sg-protocol}"
     cidr_blocks = [
       "185.184.204.70/32",
+      "45.86.177.245/32",
       "62.97.245.10/32",
       "185.184.204.74/32",
       "62.102.226.22/32",
