@@ -8,18 +8,18 @@ fields:
   tier: 4
   isMonorepoProject: false
 labels:
-  - visibility-public
-  - bounded-context-aws
-  - type-assets
-  - hosting-aws
-  - owner-sre
-  - build-na
   - area-infrastructure
-  - system-core-infrastructure
-  - deploy-na
   - domain-customer-platform
-  - language-hcl
+  - build-na
+  - system-core-infrastructure
+  - type-assets
   - compliant-no
+  - language-hcl
+  - bounded-context-aws
+  - deploy-na
+  - owner-sre
+  - hosting-aws
+  - visibility-public
 links:
   - type: REPOSITORY
     url: https://github.com/albumprinter/eops_tf_modules
