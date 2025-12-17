@@ -1,0 +1,25 @@
+configVersion: 1
+name: eops_tf_modules
+id: 'ari:cloud:compass:e33a6d16-369b-4162-894a-e468aecf5d40:component/30cce75b-bbda-419a-a008-078a690711da/d0965821-0c96-489e-a7c8-c229c59b9408'
+typeId: OTHER
+ownerId: 'ari:cloud:identity::team/f32fdc78-84a4-45dd-aeca-79ac865ec9f1'
+description: A set of core terraform modules for standardized infrastructure provisioning
+fields:
+  tier: 4
+  isMonorepoProject: false
+labels:
+  - visibility-public
+  - bounded-context-aws
+  - type-assets
+  - hosting-aws
+  - owner-sre
+  - build-na
+  - area-infrastructure
+  - system-core-infrastructure
+  - deploy-na
+  - domain-customer-platform
+  - language-hcl
+  - compliant-no
+links:
+  - type: REPOSITORY
+    url: https://github.com/albumprinter/eops_tf_modules
