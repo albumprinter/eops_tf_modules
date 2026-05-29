@@ -1,0 +1,50 @@
+name: Dependabot Security Check & Auto-Merge
+
+on: pull_request
+
+permissions:
+  contents: write
+  pull-requests: write
+  security-events: write
+
+jobs:
+  # JOB 1: Scan the PR for CVEs and run tests
+  security-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # This action fails the job if a new CVE is introduced in the PR
+      - name: Dependency Review
+        uses: actions/dependency-review-action@v4
+        with:
+          # Fail the build on any vulnerability severity level
+          fail-on-severity: low 
+
+      # (Optional) Run your actual test suite here
+      - name: Run Tests
+        run: |
+          if [ -f package.json ]; then npm ci && npm test; fi
+
+  # JOB 2: Merge the PR, but ONLY if JOB 1 succeeds
+  dependabot-merge:
+    runs-on: ubuntu-latest
+    needs: security-and-test # This blocks the merge if the CVE check fails
+    if: github.actor == 'dependabot[bot]'
+    steps:
+      - name: Fetch Dependabot Metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v2
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      # Approve and squash merge if it's not a major version change
+      - name: Approve and Auto-Merge
+        if: steps.metadata.outputs.update-type != 'version-update:semver-major'
+        run: |
+          gh pr review --approve "$PR_URL"
+          gh pr merge --auto --squash "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
