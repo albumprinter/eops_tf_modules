@@ -13,5 +13,4 @@ jobs:
       - name: 'Dependency Review'
         uses: actions/dependency-review-action@v5
         with:
-          warn-only: true
           show-patched-versions: true
